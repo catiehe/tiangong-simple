@@ -1,43 +1,5 @@
 [
   {
-    "id": "11111111-1111-1111-1111-111111111111",
-    "type": "model",
-    "name": "Cotton T-Shirt Life Cycle",
-    "description": "Cradle-to-grave model for a basic cotton t-shirt.",
-    "payload": {
-      "stages": ["Fiber Production", "Weaving", "Dyeing", "Sewing", "Distribution", "Use", "End of Life"]
-    },
-    "created_at": "2026-01-05T10:00:00Z"
-  },
-  {
-    "id": "22222222-2222-2222-2222-222222222222",
-    "type": "process",
-    "name": "Cotton Fiber Production",
-    "description": "Growing and harvesting raw cotton fiber.",
-    "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "exchanges": [
-        { "direction": "input", "flow": "Water", "amount": 2700, "unit": "L" },
-        { "direction": "input", "flow": "Fertilizer", "amount": 0.3, "unit": "kg" },
-        { "direction": "output", "flow": "Raw Cotton Fiber", "amount": 1, "unit": "kg" },
-        { "direction": "output", "flow": "CO2", "amount": 1.8, "unit": "kg" }
-      ]
-    },
-    "created_at": "2026-01-05T10:05:00Z"
-  },
-  {
-    "id": "33333333-3333-3333-3333-333333333333",
-    "type": "flow",
-    "name": "Raw Cotton Fiber",
-    "description": "Unprocessed cotton fiber output flow.",
-    "payload": {
-      "flow_type": "product",
-      "reference_flow_property": "Mass"
-    },
-    "created_at": "2026-01-05T10:10:00Z"
-  },
-  {
     "id": "44444444-4444-4444-4444-444444444444",
     "type": "flow_property",
     "name": "Mass",
@@ -46,8 +8,31 @@
       "unit_group": "Units of mass",
       "default_unit": "kg"
     },
-    "created_at": "2026-01-05T10:15:00Z"
+    "created_at": "2026-01-05T10:00:00Z"
   },
+  {
+    "id": "44444444-4444-4444-4444-444444444445",
+    "type": "flow_property",
+    "name": "Net calorific value",
+    "description": "Lower heating value flow property, used for fuels and energy carriers.",
+    "payload": {
+      "unit_group": "Units of energy",
+      "default_unit": "MJ"
+    },
+    "created_at": "2026-01-05T10:01:00Z"
+  },
+  {
+    "id": "44444444-4444-4444-4444-444444444446",
+    "type": "flow_property",
+    "name": "Gross calorific value",
+    "description": "Higher heating value flow property, used for fuels and energy carriers.",
+    "payload": {
+      "unit_group": "Units of energy",
+      "default_unit": "MJ"
+    },
+    "created_at": "2026-01-05T10:02:00Z"
+  },
+
   {
     "id": "55555555-5555-5555-5555-555555555555",
     "type": "unit_group",
@@ -55,21 +40,182 @@
     "description": "Mass-based units of measure.",
     "payload": {
       "reference_unit": "kg",
-      "units": ["kg", "g", "lb"]
+      "units": ["kg", "g", "t"]
+    },
+    "created_at": "2026-01-05T10:10:00Z"
+  },
+  {
+    "id": "55555555-5555-5555-5555-555555555556",
+    "type": "unit_group",
+    "name": "Units of energy",
+    "description": "Energy-based units of measure.",
+    "payload": {
+      "reference_unit": "MJ",
+      "units": ["MJ", "kWh", "GJ"]
+    },
+    "created_at": "2026-01-05T10:11:00Z"
+  },
+
+  {
+    "id": "33333333-3333-3333-3333-333333333333",
+    "type": "flow",
+    "name": "Carbon dioxide, fossil",
+    "description": "Elementary flow: fossil CO2 emission to air.",
+    "payload": {
+      "flow_type": "elementary",
+      "reference_flow_property": "Mass"
     },
     "created_at": "2026-01-05T10:20:00Z"
   },
   {
+    "id": "33333333-3333-3333-3333-333333333334",
+    "type": "flow",
+    "name": "Water, unspecified natural origin",
+    "description": "Elementary flow: water withdrawn from the environment.",
+    "payload": {
+      "flow_type": "elementary",
+      "reference_flow_property": "Mass"
+    },
+    "created_at": "2026-01-05T10:21:00Z"
+  },
+  {
+    "id": "33333333-3333-3333-3333-333333333335",
+    "type": "flow",
+    "name": "Natural gas, high pressure",
+    "description": "Product flow: natural gas delivered at high pressure.",
+    "payload": {
+      "flow_type": "product",
+      "reference_flow_property": "Net calorific value"
+    },
+    "created_at": "2026-01-05T10:22:00Z"
+  },
+  {
+    "id": "33333333-3333-3333-3333-333333333336",
+    "type": "flow",
+    "name": "Electricity, high voltage",
+    "description": "Product flow: electricity supplied at high voltage.",
+    "payload": {
+      "flow_type": "product",
+      "reference_flow_property": "Net calorific value"
+    },
+    "created_at": "2026-01-05T10:23:00Z"
+  },
+  {
+    "id": "33333333-3333-3333-3333-333333333337",
+    "type": "flow",
+    "name": "Steel, low-alloyed",
+    "description": "Product flow: low-alloyed steel.",
+    "payload": {
+      "flow_type": "product",
+      "reference_flow_property": "Mass"
+    },
+    "created_at": "2026-01-05T10:24:00Z"
+  },
+
+  {
+    "id": "22222222-2222-2222-2222-222222222222",
+    "type": "process",
+    "name": "Electricity, high voltage {CN}| production mix| Cut-off, U",
+    "description": "China grid electricity production mix at high voltage.",
+    "payload": {
+      "unit": "kWh",
+      "reference_amount": 1,
+      "source": "ecoinvent 3.10",
+      "exchanges": [
+        { "direction": "input", "flow": "Natural gas, high pressure", "amount": 0.18, "unit": "MJ" },
+        { "direction": "input", "flow": "Water, unspecified natural origin", "amount": 1.2, "unit": "L" },
+        { "direction": "output", "flow": "Electricity, high voltage", "amount": 1, "unit": "kWh" },
+        { "direction": "output", "flow": "Carbon dioxide, fossil", "amount": 0.55, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-01-05T10:30:00Z"
+  },
+  {
+    "id": "22222222-2222-2222-2222-222222222223",
+    "type": "process",
+    "name": "Natural gas, high pressure {RER}| production| Cut-off, U",
+    "description": "European natural gas production and delivery at high pressure.",
+    "payload": {
+      "unit": "MJ",
+      "reference_amount": 1,
+      "source": "ecoinvent 3.10",
+      "exchanges": [
+        { "direction": "output", "flow": "Natural gas, high pressure", "amount": 1, "unit": "MJ" },
+        { "direction": "output", "flow": "Carbon dioxide, fossil", "amount": 0.02, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-01-05T10:31:00Z"
+  },
+  {
+    "id": "22222222-2222-2222-2222-222222222224",
+    "type": "process",
+    "name": "Steel, low-alloyed {GLO}| production| Cut-off, U",
+    "description": "Global average production of low-alloyed steel.",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "GaBi Professional database 2025",
+      "exchanges": [
+        { "direction": "input", "flow": "Electricity, high voltage", "amount": 0.6, "unit": "kWh" },
+        { "direction": "input", "flow": "Natural gas, high pressure", "amount": 8.5, "unit": "MJ" },
+        { "direction": "output", "flow": "Steel, low-alloyed", "amount": 1, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide, fossil", "amount": 1.9, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-01-05T10:32:00Z"
+  },
+  {
+    "id": "22222222-2222-2222-2222-222222222225",
+    "type": "process",
+    "name": "Cotton fiber production {IN}| conventional, irrigated| Cut-off, U",
+    "description": "Growing and harvesting irrigated conventional cotton fiber in India.",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "ecoinvent 3.10",
+      "exchanges": [
+        { "direction": "input", "flow": "Water, unspecified natural origin", "amount": 2700, "unit": "L" },
+        { "direction": "input", "flow": "Electricity, high voltage", "amount": 0.4, "unit": "kWh" },
+        { "direction": "output", "flow": "Carbon dioxide, fossil", "amount": 1.8, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-01-05T10:33:00Z"
+  },
+
+  {
     "id": "66666666-6666-6666-6666-666666666666",
     "type": "source",
-    "name": "Ecoinvent 3.10",
+    "name": "ecoinvent 3.10",
     "description": "Background LCI database used for upstream processes.",
     "payload": {
       "publisher": "ecoinvent Association",
       "year": 2026
     },
-    "created_at": "2026-01-05T10:25:00Z"
+    "created_at": "2026-01-05T10:40:00Z"
   },
+  {
+    "id": "66666666-6666-6666-6666-666666666667",
+    "type": "source",
+    "name": "GaBi Professional database 2025",
+    "description": "Background LCI database used for industrial material processes.",
+    "payload": {
+      "publisher": "Sphera",
+      "year": 2025
+    },
+    "created_at": "2026-01-05T10:41:00Z"
+  },
+  {
+    "id": "66666666-6666-6666-6666-666666666668",
+    "type": "source",
+    "name": "ISO 14040:2006",
+    "description": "Environmental management — Life cycle assessment — Principles and framework.",
+    "payload": {
+      "publisher": "International Organization for Standardization",
+      "year": 2006
+    },
+    "created_at": "2026-01-05T10:42:00Z"
+  },
+
   {
     "id": "77777777-7777-7777-7777-777777777777",
     "type": "contact",
@@ -79,6 +225,56 @@
       "email": "jane.smith@example.com",
       "role": "Author"
     },
-    "created_at": "2026-01-05T10:30:00Z"
+    "created_at": "2026-01-05T10:50:00Z"
+  },
+  {
+    "id": "77777777-7777-7777-7777-777777777778",
+    "type": "contact",
+    "name": "ecoinvent Association",
+    "description": "Publisher and maintainer of the ecoinvent background database.",
+    "payload": {
+      "email": "contact@ecoinvent.org",
+      "role": "Data provider"
+    },
+    "created_at": "2026-01-05T10:51:00Z"
+  },
+  {
+    "id": "77777777-7777-7777-7777-777777777779",
+    "type": "contact",
+    "name": "Sphera Solutions",
+    "description": "Publisher of the GaBi Professional background database.",
+    "payload": {
+      "email": "info@sphera.com",
+      "role": "Data provider"
+    },
+    "created_at": "2026-01-05T10:52:00Z"
+  },
+
+  {
+    "id": "11111111-1111-1111-1111-111111111111",
+    "type": "model",
+    "name": "Grid Electricity Supply Chain",
+    "description": "Cradle-to-gate model of grid electricity, from natural gas extraction to delivery.",
+    "payload": {
+      "processes": [
+        "Natural gas, high pressure {RER}| production| Cut-off, U",
+        "Electricity, high voltage {CN}| production mix| Cut-off, U"
+      ]
+    },
+    "created_at": "2026-01-05T11:00:00Z"
+  },
+  {
+    "id": "11111111-1111-1111-1111-111111111112",
+    "type": "model",
+    "name": "Steel Can Life Cycle",
+    "description": "Cradle-to-gate model of a steel can, including upstream electricity and natural gas.",
+    "payload": {
+      "processes": [
+        "Natural gas, high pressure {RER}| production| Cut-off, U",
+        "Electricity, high voltage {CN}| production mix| Cut-off, U",
+        "Steel, low-alloyed {GLO}| production| Cut-off, U"
+      ]
+    },
+    "created_at": "2026-01-05T11:01:00Z"
   }
 ]
