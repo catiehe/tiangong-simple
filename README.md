@@ -2,6 +2,42 @@
 
 A minimal starting point for working with AI coding assistants in a dev container. The container image comes pre-loaded with all tools — this repo only needs the config files to get everything running.
 
+This repo also houses **PRISM LCA**, a minimal clone of [tiangong-lca-next](https://github.com/linancn/tiangong-lca-next)'s sidebar/data-browsing shell (see `plan.md` for the full design). See below for how to run and deploy it.
+
+---
+
+## PRISM LCA
+
+A React + Vite + Supabase app with a collapsible sidebar over 7 "Open Data" types (Models, Processes, Flows, Flow Properties, Unit Groups, Sources, Contacts), backed by one generic `datasets` table.
+
+### Running locally
+
+```
+npm install
+npm run dev
+```
+
+With no further setup, the app runs entirely on the bundled mock data in `src/mock/datasets.json` — sign-in and "Add" are disabled until Supabase is configured (below).
+
+### Connecting Supabase
+
+1. Create a project at [supabase.com](https://supabase.com).
+2. In the Supabase SQL editor, run `supabase/seed.sql` — it creates the `datasets` table, its RLS policies (public read, authenticated insert), and seeds one sample row per type.
+3. Copy `.env.example` to `.env` and fill in your project's URL and anon key (Project Settings → API):
+   ```
+   VITE_SUPABASE_URL=
+   VITE_SUPABASE_ANON_KEY=
+   ```
+4. Restart `npm run dev` — the app now reads/writes through Supabase instead of the mock data, and magic-link sign-in (sidebar footer) becomes usable.
+
+### Deploying to GitHub Pages
+
+`.github/workflows/deploy.yml` builds on every push to `main` and deploys `dist/` to GitHub Pages.
+
+1. In the repo's **Settings → Secrets and variables → Actions**, add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` (same values as your `.env`) — the workflow needs them at build time since Vite inlines `import.meta.env.*` into the bundle.
+2. In **Settings → Pages**, set the source to **GitHub Actions**.
+3. Push to `main`; the workflow builds and deploys automatically.
+
 ---
 
 ## Quick Start

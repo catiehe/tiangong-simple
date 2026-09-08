@@ -1,4 +1,4 @@
-# TianGong LCA — Simple Version — Plan
+# PRISM LCA — Plan
 
 A minimal clone of the sidebar/data-browsing shell from [tiangong-lca-next](https://github.com/linancn/tiangong-lca-next), built in **this repo**, deployed as a static site to **GitHub Pages**, with **Supabase** as the only backend (Postgres + Auth, no custom server).
 
