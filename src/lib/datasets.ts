@@ -22,16 +22,17 @@ export interface Dataset {
 export interface DatasetTypeInfo {
   type: DatasetType
   label: string
+  singular: string
 }
 
 export const DATASET_TYPES: DatasetTypeInfo[] = [
-  { type: "model", label: "Models" },
-  { type: "process", label: "Processes" },
-  { type: "flow", label: "Flows" },
-  { type: "flow_property", label: "Flow Properties" },
-  { type: "unit_group", label: "Unit Groups" },
-  { type: "source", label: "Sources" },
-  { type: "contact", label: "Contacts" },
+  { type: "model", label: "Models", singular: "Model" },
+  { type: "process", label: "Processes", singular: "Process" },
+  { type: "flow", label: "Flows", singular: "Flow" },
+  { type: "flow_property", label: "Flow Properties", singular: "Flow Property" },
+  { type: "unit_group", label: "Unit Groups", singular: "Unit Group" },
+  { type: "source", label: "Sources", singular: "Source" },
+  { type: "contact", label: "Contacts", singular: "Contact" },
 ]
 
 export function getDatasetTypeInfo(type: string): DatasetTypeInfo | undefined {
