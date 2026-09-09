@@ -507,5 +507,323 @@
       ]
     },
     "created_at": "2026-01-05T11:12:00Z"
+  },
+  {
+    "id": "70c84f27-61a8-5acd-b4c8-a962c67cbe6c",
+    "type": "process",
+    "name": "Cotton Fiber: P1 — Fertilizer production",
+    "description": "Process in the 'Cotton Fiber' LCA teaching example (1 kg of ginned cotton fiber, ready for spinning).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Cotton Fiber (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "N-fertilizer", "amount": 1, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 3.5, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:00:00Z"
+  },
+  {
+    "id": "7fd5cea9-ef96-5b3e-8598-cbbfde33290e",
+    "type": "process",
+    "name": "Cotton Fiber: P2 — Cotton farming",
+    "description": "Process in the 'Cotton Fiber' LCA teaching example (1 kg of ginned cotton fiber, ready for spinning).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Cotton Fiber (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Cotton fiber", "amount": 1, "unit": "kg" },
+        { "direction": "input", "flow": "N-fertilizer", "amount": 0.2, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.8, "unit": "kg" },
+        { "direction": "output", "flow": "Nitrous oxide", "amount": 0.015, "unit": "kg" },
+        { "direction": "output", "flow": "Ammonia", "amount": 0.01, "unit": "kg" },
+        { "direction": "input", "flow": "Water", "amount": 8000, "unit": "L" }
+      ]
+    },
+    "created_at": "2026-09-10T09:00:07Z"
+  },
+  {
+    "id": "5968d1e3-2c3e-5466-b1f3-10361b4fff75",
+    "type": "process",
+    "name": "Cotton Fiber (bafu-linked): Cotton farming",
+    "description": "Process in the 'Cotton Fiber (bafu-linked)' LCA teaching example (1 kg of ginned cotton fiber, ready for spinning).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Cotton Fiber (bafu-linked) (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Cotton fiber", "amount": 1, "unit": "kg" },
+        { "direction": "input", "flow": "Average mineral fertiliser, as N, at regional storehouse {RER}", "amount": 0.2, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.8, "unit": "kg" },
+        { "direction": "output", "flow": "Nitrous oxide", "amount": 0.015, "unit": "kg" },
+        { "direction": "output", "flow": "Ammonia", "amount": 0.01, "unit": "kg" },
+        { "direction": "input", "flow": "Water", "amount": 8000, "unit": "L" }
+      ]
+    },
+    "created_at": "2026-09-10T09:01:00Z"
+  },
+  {
+    "id": "5903b384-c4fc-5163-aefb-4cdf2a8f2554",
+    "type": "process",
+    "name": "Jacket: P0 — Raw material extraction",
+    "description": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Jacket (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Raw fiber material", "amount": 1, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 1.8, "unit": "kg" },
+        { "direction": "output", "flow": "Methane", "amount": 0.02, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:02:00Z"
+  },
+  {
+    "id": "5b4436a5-b529-579e-82a7-242c4840d43f",
+    "type": "process",
+    "name": "Jacket: P1 — Spinning",
+    "description": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Jacket (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Fiber", "amount": 1, "unit": "kg" },
+        { "direction": "input", "flow": "Raw fiber material", "amount": 1.2, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 1.2, "unit": "kg" },
+        { "direction": "output", "flow": "Methane", "amount": 0.01, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:02:07Z"
+  },
+  {
+    "id": "701038ee-7163-56e8-8b94-96be52334646",
+    "type": "process",
+    "name": "Jacket: P2 — Fabric weaving",
+    "description": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Jacket (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Fabric", "amount": 1, "unit": "kg" },
+        { "direction": "input", "flow": "Fiber", "amount": 1.1, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 1.5, "unit": "kg" },
+        { "direction": "output", "flow": "Nitrogen oxides", "amount": 0.01, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:02:14Z"
+  },
+  {
+    "id": "1d36391e-912d-569a-9a16-e7d718cdc515",
+    "type": "process",
+    "name": "Jacket: P3 — Zipper production",
+    "description": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale).",
+    "payload": {
+      "unit": "unit",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Jacket (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Zipper", "amount": 1, "unit": "unit" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.4, "unit": "kg" },
+        { "direction": "output", "flow": "Nitrogen oxides", "amount": 0.005, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:02:21Z"
+  },
+  {
+    "id": "91d912f0-17ce-5e34-abae-70eb7d3737a3",
+    "type": "process",
+    "name": "Jacket: P4 — Jacket assembly",
+    "description": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale).",
+    "payload": {
+      "unit": "unit",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Jacket (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Jacket", "amount": 1, "unit": "unit" },
+        { "direction": "input", "flow": "Fabric", "amount": 0.6, "unit": "kg" },
+        { "direction": "input", "flow": "Zipper", "amount": 1, "unit": "unit" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.8, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:02:28Z"
+  },
+  {
+    "id": "4816c3d5-48af-5629-8b3f-20a258fc34c9",
+    "type": "process",
+    "name": "Mock Plastic Broom: Mock plastic broom assembly",
+    "description": "Process in the 'Mock Plastic Broom' LCA teaching example (1 mock plastic broom).",
+    "payload": {
+      "unit": "unit",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Mock Plastic Broom (EF v3.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Mock plastic broom", "amount": 1, "unit": "unit" },
+        { "direction": "input", "flow": "Mock polypropylene granulate, at plant {MOCK}", "amount": 0.52, "unit": "kilogram" },
+        { "direction": "input", "flow": "Mock freight transport, small truck {MOCK}", "amount": 0.1055, "unit": "ton kilometer" }
+      ]
+    },
+    "created_at": "2026-09-10T09:03:00Z"
+  },
+  {
+    "id": "f2e8cc61-7329-52b1-8a4d-edc979a3e443",
+    "type": "process",
+    "name": "Simple Mock Plastic Broom: Simple mock plastic broom assembly",
+    "description": "Process in the 'Simple Mock Plastic Broom' LCA teaching example (1 simple mock plastic broom).",
+    "payload": {
+      "unit": "unit",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Simple Mock Plastic Broom (EF v3.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Simple mock plastic broom", "amount": 1, "unit": "unit" },
+        { "direction": "input", "flow": "Mock polypropylene granulate, at plant {MOCK}", "amount": 0.52, "unit": "kilogram" },
+        { "direction": "input", "flow": "Mock freight transport, small truck, direct emissions only {MOCK}", "amount": 0.1055, "unit": "ton kilometer" }
+      ]
+    },
+    "created_at": "2026-09-10T09:04:00Z"
+  },
+  {
+    "id": "ea853222-c109-5c8a-bd7a-c242c692d7f2",
+    "type": "process",
+    "name": "Plastic Broom (bafu-linked): Plastic broom assembly",
+    "description": "Process in the 'Plastic Broom (bafu-linked)' LCA teaching example (1 plastic broom).",
+    "payload": {
+      "unit": "unit",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Plastic Broom (bafu-linked) (EF v3.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Plastic broom", "amount": 1, "unit": "unit" },
+        { "direction": "input", "flow": "Polylactide, granulate, at plant {GLO}", "amount": 0.52, "unit": "kg" },
+        { "direction": "input", "flow": "Nylon 6, at plant {RER}", "amount": 0.03, "unit": "kg" },
+        { "direction": "input", "flow": "Transport, freight, lorry, 16t-32t gross weight, fleet average {RER}", "amount": 0.1055, "unit": "tkm" }
+      ]
+    },
+    "created_at": "2026-09-10T09:05:00Z"
+  },
+  {
+    "id": "26007961-284b-51a0-8d07-4e3e86f6bb3a",
+    "type": "process",
+    "name": "Polyester T-shirt: P1 — Oil extraction",
+    "description": "Process in the 'Polyester T-shirt' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric)).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Polyester T-shirt (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Crude oil", "amount": 1, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.2, "unit": "kg" },
+        { "direction": "output", "flow": "Methane", "amount": 0.05, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:06:00Z"
+  },
+  {
+    "id": "1844a019-434a-5a9c-a8a9-bd43132b9d41",
+    "type": "process",
+    "name": "Polyester T-shirt: P2 — Polyester fiber production",
+    "description": "Process in the 'Polyester T-shirt' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric)).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Polyester T-shirt (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Polyester fiber", "amount": 1, "unit": "kg" },
+        { "direction": "input", "flow": "Crude oil", "amount": 1.5, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 5.5, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:06:07Z"
+  },
+  {
+    "id": "2add549e-161e-5c18-a946-64d053ed3d9d",
+    "type": "process",
+    "name": "Polyester T-shirt: P3 — T-shirt assembly",
+    "description": "Process in the 'Polyester T-shirt' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric)).",
+    "payload": {
+      "unit": "unit",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Polyester T-shirt (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "T-shirt", "amount": 1, "unit": "unit" },
+        { "direction": "input", "flow": "Polyester fiber", "amount": 0.2, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 1, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:06:14Z"
+  },
+  {
+    "id": "4cff549e-8710-5422-afcb-bc7b28a380e2",
+    "type": "process",
+    "name": "Polyester T-shirt (bafu-linked): T-shirt assembly",
+    "description": "Process in the 'Polyester T-shirt (bafu-linked)' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric)).",
+    "payload": {
+      "unit": "unit",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Polyester T-shirt (bafu-linked) (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "T-shirt", "amount": 1, "unit": "unit" },
+        { "direction": "input", "flow": "Polyethylene terephthalate, granulate, bottle grade, at plant {RER}", "amount": 0.2, "unit": "kg" },
+        { "direction": "input", "flow": "Fleece production, polyethylene terephthalate {RER}", "amount": 0.2, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 1, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:07:00Z"
+  },
+  {
+    "id": "fd703284-afb0-5f70-9923-661b4e70fbcb",
+    "type": "process",
+    "name": "Wool Yarn: P1 — Sheep farming",
+    "description": "Process in the 'Wool Yarn' LCA teaching example (1 kg of wool yarn, ready for knitting or weaving).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Wool Yarn (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Raw wool", "amount": 1, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.5, "unit": "kg" },
+        { "direction": "output", "flow": "Methane", "amount": 0.4, "unit": "kg" }
+      ]
+    },
+    "created_at": "2026-09-10T09:08:00Z"
+  },
+  {
+    "id": "52f1d9ae-d839-52c3-b31d-52f5688d59e6",
+    "type": "process",
+    "name": "Wool Yarn: P2 — Wool yarn production",
+    "description": "Process in the 'Wool Yarn' LCA teaching example (1 kg of wool yarn, ready for knitting or weaving).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Wool Yarn (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Wool yarn", "amount": 1, "unit": "kg" },
+        { "direction": "input", "flow": "Raw wool", "amount": 1.1, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 2, "unit": "kg" },
+        { "direction": "input", "flow": "Water", "amount": 30, "unit": "L" }
+      ]
+    },
+    "created_at": "2026-09-10T09:08:07Z"
+  },
+  {
+    "id": "cd1ce7a6-f1b8-5457-b772-1ff9bb602c09",
+    "type": "process",
+    "name": "Wool Yarn (bafu-linked): Wool yarn production",
+    "description": "Process in the 'Wool Yarn (bafu-linked)' LCA teaching example (1 kg of wool yarn, ready for knitting or weaving).",
+    "payload": {
+      "unit": "kg",
+      "reference_amount": 1,
+      "source": "lca-mcp.mathplosion.com product graph — Wool Yarn (bafu-linked) (TRACI v2.1)",
+      "exchanges": [
+        { "direction": "output", "flow": "Wool yarn", "amount": 1, "unit": "kg" },
+        { "direction": "input", "flow": "xx Wool, sheep, at farm {US}", "amount": 1.1, "unit": "kg" },
+        { "direction": "output", "flow": "Carbon dioxide", "amount": 2, "unit": "kg" },
+        { "direction": "input", "flow": "Water", "amount": 30, "unit": "L" }
+      ]
+    },
+    "created_at": "2026-09-10T09:09:00Z"
   }
 ]
