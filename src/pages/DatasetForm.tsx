@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react"
+import { useEffect, useState, type FormEvent } from "react"
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import { Plus, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -7,7 +7,10 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   createDataset,
+  getDataset,
   getDatasetTypeInfo,
+  updateDataset,
+  type Dataset,
   type DatasetType,
 } from "@/lib/datasets"
 import { supabase } from "@/lib/supabase"
@@ -18,8 +21,25 @@ interface PayloadRow {
   value: string
 }
 
+function parsePayloadValue(raw: string): unknown {
+  try {
+    return JSON.parse(raw)
+  } catch {
+    return raw
+  }
+}
+
+function payloadToRows(payload: Record<string, unknown>): PayloadRow[] {
+  const entries = Object.entries(payload)
+  if (entries.length === 0) return [{ key: "", value: "" }]
+  return entries.map(([key, value]) => ({
+    key,
+    value: typeof value === "string" ? value : JSON.stringify(value),
+  }))
+}
+
 export function DatasetForm() {
-  const { type } = useParams<{ type: string }>()
+  const { type, id } = useParams<{ type: string; id?: string }>()
   const typeInfo = type ? getDatasetTypeInfo(type) : undefined
   const session = useSessionStore((s) => s.session)
   const navigate = useNavigate()
@@ -29,9 +49,28 @@ export function DatasetForm() {
   const [rows, setRows] = useState<PayloadRow[]>([{ key: "", value: "" }])
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [existing, setExisting] = useState<Dataset | null | undefined>(
+    id ? undefined : null,
+  )
+
+  useEffect(() => {
+    if (!id) return
+    getDataset(id).then((d) => {
+      setExisting(d ?? null)
+      if (d) {
+        setName(d.name)
+        setDescription(d.description ?? "")
+        setRows(payloadToRows(d.payload))
+      }
+    })
+  }, [id])
 
   if (!typeInfo) return <Navigate to="/open-data/process" replace />
   if (!session) return <Navigate to="/sign-in" replace />
+  if (id && existing === undefined) return null
+  if (id && existing === null) {
+    return <p className="text-muted-foreground">Not found.</p>
+  }
 
   function updateRow(index: number, field: keyof PayloadRow, value: string) {
     setRows((prev) =>
@@ -54,16 +93,19 @@ export function DatasetForm() {
 
     const payload: Record<string, unknown> = {}
     for (const row of rows) {
-      if (row.key.trim()) payload[row.key.trim()] = row.value
+      if (row.key.trim()) payload[row.key.trim()] = parsePayloadValue(row.value)
     }
 
     try {
-      const dataset = await createDataset({
+      const input = {
         type: typeInfo!.type as DatasetType,
         name,
         description: description || null,
         payload,
-      })
+      }
+      const dataset = id
+        ? await updateDataset(id, input)
+        : await createDataset(input)
       navigate(`/open-data/${typeInfo!.type}/${dataset.id}`)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to save.")
@@ -74,14 +116,16 @@ export function DatasetForm() {
   return (
     <Card className="mx-auto max-w-xl">
       <CardHeader>
-        <CardTitle>Add {typeInfo.label.replace(/s$/, "")}</CardTitle>
+        <CardTitle>
+          {id ? "Edit" : "Add"} {typeInfo.label.replace(/s$/, "")}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         {!supabase ? (
           <p className="text-muted-foreground text-sm">
             Supabase isn't configured for this deployment (missing{" "}
             <code>VITE_SUPABASE_URL</code> / <code>VITE_SUPABASE_ANON_KEY</code>
-            ), so adding datasets is unavailable.
+            ), so {id ? "editing" : "adding"} datasets is unavailable.
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -107,27 +151,29 @@ export function DatasetForm() {
             <div className="flex flex-col gap-2">
               <Label>Fields</Label>
               {rows.map((row, i) => (
-                <div key={i} className="flex items-center gap-2">
+                <div key={i} className="flex flex-col gap-2 sm:flex-row sm:items-center">
                   <Input
                     placeholder="key"
                     value={row.key}
                     onChange={(e) => updateRow(i, "key", e.target.value)}
-                    className="w-1/3"
+                    className="sm:w-1/3"
                   />
-                  <Input
-                    placeholder="value"
-                    value={row.value}
-                    onChange={(e) => updateRow(i, "value", e.target.value)}
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon-sm"
-                    onClick={() => removeRow(i)}
-                    aria-label="Remove field"
-                  >
-                    <Trash2 className="size-4" />
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <Input
+                      placeholder="value"
+                      value={row.value}
+                      onChange={(e) => updateRow(i, "value", e.target.value)}
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon-sm"
+                      onClick={() => removeRow(i)}
+                      aria-label="Remove field"
+                    >
+                      <Trash2 className="size-4" />
+                    </Button>
+                  </div>
                 </div>
               ))}
               <Button
@@ -145,7 +191,7 @@ export function DatasetForm() {
             {error && <p className="text-destructive text-sm">{error}</p>}
 
             <Button type="submit" disabled={submitting}>
-              {submitting ? "Saving..." : "Save"}
+              {submitting ? "Saving..." : id ? "Save changes" : "Save"}
             </Button>
           </form>
         )}

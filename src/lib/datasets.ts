@@ -85,3 +85,25 @@ export async function createDataset(input: NewDataset): Promise<Dataset> {
   if (error) throw error
   return data as Dataset
 }
+
+export async function updateDataset(id: string, input: NewDataset): Promise<Dataset> {
+  if (!supabase) {
+    throw new Error("Supabase is not configured, so datasets can't be edited.")
+  }
+  const { data, error } = await supabase
+    .from("datasets")
+    .update(input)
+    .eq("id", id)
+    .select()
+    .single()
+  if (error) throw error
+  return data as Dataset
+}
+
+export async function deleteDataset(id: string): Promise<void> {
+  if (!supabase) {
+    throw new Error("Supabase is not configured, so datasets can't be deleted.")
+  }
+  const { error } = await supabase.from("datasets").delete().eq("id", id)
+  if (error) throw error
+}

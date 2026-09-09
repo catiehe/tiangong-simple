@@ -29,6 +29,7 @@ function App() {
                 <Route path="/" element={<Navigate to="/open-data/process" replace />} />
                 <Route path="/open-data/:type" element={<DatasetList />} />
                 <Route path="/open-data/:type/new" element={<DatasetForm />} />
+                <Route path="/open-data/:type/:id/edit" element={<DatasetForm />} />
                 <Route path="/open-data/:type/:id" element={<DatasetDetail />} />
                 <Route path="/sign-in" element={<SignIn />} />
               </Routes>

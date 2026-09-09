@@ -22,6 +22,12 @@ create policy "public read" on datasets for select using (true);
 drop policy if exists "auth write" on datasets;
 create policy "auth write" on datasets for insert to authenticated with check (true);
 
+drop policy if exists "auth update" on datasets;
+create policy "auth update" on datasets for update to authenticated using (true) with check (true);
+
+drop policy if exists "auth delete" on datasets;
+create policy "auth delete" on datasets for delete to authenticated using (true);
+
 -- 40 sample rows, matching src/mock/datasets.json exactly: cross-referenced
 -- flow properties, unit groups, flows, processes (including a full cotton
 -- t-shirt chain: fiber -> weaving -> dyeing -> sewing -> transport), sources,
