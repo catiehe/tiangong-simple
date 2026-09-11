@@ -662,3 +662,151 @@ function normalizeFlowProperties(value: unknown): FlowPropertyAmount[] {
     }
   })
 }
+
+// ---------------------------------------------------------------------------
+// Model ("Life Cycle Model") — a process graph, not a flat document. Per the
+// 2026-09-11 schema research: name/classification/generalComment and the admin
+// block use the exact same shape as Process (not the 5-type shared minimal
+// admin), and the graph itself is process instances + connections declared
+// only from the output side. The lite scope here models that graph as two
+// flat lists (a table of instances, a table of edges) rather than the real
+// app's visual flowchart editor or its matrix calculation engine — neither is
+// in scope. `@flowUUID`/`groups`/`parameters`/`referenceToResultingProcess`
+// are cosmetic/calculation-only and dropped, same spirit as skipping
+// Process's LCIA Results/Validation.
+// ---------------------------------------------------------------------------
+
+export type ModelAdministrativeInformation = ProcessDataSet["administrativeInformation"]
+
+export interface ModelProcessInstance {
+  dataSetInternalID: number
+  referenceToProcess: DatasetRef
+  multiplicationFactor: number | null
+}
+
+export interface ModelConnection {
+  fromInstanceId: number
+  toInstanceId: number
+}
+
+export interface ModelDataSet {
+  modelInformation: {
+    dataSetInformation: {
+      name: {
+        baseName: LangText[]
+        treatmentStandardsRoutes: LangText[]
+        mixAndLocationTypes: LangText[]
+      }
+      classification: string[]
+      generalComment: LangText[]
+    }
+    quantitativeReference: {
+      referenceToReferenceProcess: number | null
+    }
+  }
+  modellingAndValidation: {
+    complianceDeclarations: ComplianceDeclaration[]
+  }
+  administrativeInformation: ModelAdministrativeInformation
+  processInstances: ModelProcessInstance[]
+  connections: ModelConnection[]
+}
+
+function emptyModelAdmin(): ModelAdministrativeInformation {
+  return {
+    referenceToCommissioner: emptyRef("contact"),
+    intendedApplications: [],
+    referenceToPersonOrEntityGeneratingTheDataSet: emptyRef("contact"),
+    dataSetVersion: "01.01.000",
+    permanentDataSetURI: "",
+    referenceToOwnershipOfDataSet: emptyRef("contact"),
+    copyright: false,
+    licenseType: "",
+    timeStamp: new Date().toISOString(),
+  }
+}
+
+export function emptyModelDataSet(): ModelDataSet {
+  return {
+    modelInformation: {
+      dataSetInformation: {
+        name: { baseName: [], treatmentStandardsRoutes: [], mixAndLocationTypes: [] },
+        classification: [],
+        generalComment: [],
+      },
+      quantitativeReference: { referenceToReferenceProcess: null },
+    },
+    modellingAndValidation: { complianceDeclarations: [] },
+    administrativeInformation: emptyModelAdmin(),
+    processInstances: [],
+    connections: [],
+  }
+}
+
+export function toModelDataSet(payload: unknown): ModelDataSet {
+  const empty = emptyModelAdmin()
+  const p = (payload ?? {}) as Partial<ModelDataSet>
+  const di = p.modelInformation?.dataSetInformation
+  const admin = p.administrativeInformation
+  return {
+    modelInformation: {
+      dataSetInformation: {
+        name: {
+          baseName: di?.name?.baseName ?? [],
+          treatmentStandardsRoutes: di?.name?.treatmentStandardsRoutes ?? [],
+          mixAndLocationTypes: di?.name?.mixAndLocationTypes ?? [],
+        },
+        classification: di?.classification ?? [],
+        generalComment: di?.generalComment ?? [],
+      },
+      quantitativeReference: {
+        referenceToReferenceProcess:
+          p.modelInformation?.quantitativeReference?.referenceToReferenceProcess ?? null,
+      },
+    },
+    modellingAndValidation: {
+      complianceDeclarations: normalizeComplianceDeclarations(
+        p.modellingAndValidation?.complianceDeclarations,
+      ),
+    },
+    administrativeInformation: {
+      referenceToCommissioner: admin?.referenceToCommissioner ?? empty.referenceToCommissioner,
+      intendedApplications: admin?.intendedApplications ?? [],
+      referenceToPersonOrEntityGeneratingTheDataSet:
+        admin?.referenceToPersonOrEntityGeneratingTheDataSet ??
+        empty.referenceToPersonOrEntityGeneratingTheDataSet,
+      dataSetVersion: admin?.dataSetVersion ?? "01.01.000",
+      permanentDataSetURI: admin?.permanentDataSetURI ?? "",
+      referenceToOwnershipOfDataSet:
+        admin?.referenceToOwnershipOfDataSet ?? empty.referenceToOwnershipOfDataSet,
+      copyright: admin?.copyright ?? false,
+      licenseType: admin?.licenseType ?? "",
+      timeStamp: admin?.timeStamp ?? new Date().toISOString(),
+    },
+    processInstances: normalizeProcessInstances(p.processInstances),
+    connections: normalizeConnections(p.connections),
+  }
+}
+
+function normalizeProcessInstances(value: unknown): ModelProcessInstance[] {
+  if (!Array.isArray(value)) return []
+  return value.map((v, i) => {
+    const pi = (v ?? {}) as Partial<ModelProcessInstance>
+    return {
+      dataSetInternalID: pi.dataSetInternalID ?? i + 1,
+      referenceToProcess: pi.referenceToProcess ?? emptyRef("process"),
+      multiplicationFactor: pi.multiplicationFactor ?? null,
+    }
+  })
+}
+
+function normalizeConnections(value: unknown): ModelConnection[] {
+  if (!Array.isArray(value)) return []
+  return value.map((v) => {
+    const c = (v ?? {}) as Partial<ModelConnection>
+    return {
+      fromInstanceId: c.fromInstanceId ?? 0,
+      toInstanceId: c.toInstanceId ?? 0,
+    }
+  })
+}

@@ -158,7 +158,7 @@ Per the 2026-09-11 schema research, the field-level shape per type:
 
 **Model is explicitly excluded from this phase** — see Phase 3.
 
-### Phase 3 — Model: external link + Edit + eventual ILCD format 🚧 in progress (2026-09-11)
+### Phase 3 — Model: external link + Edit + ILCD format ✅ done (2026-09-11)
 
 Three separate asks, in order:
 
@@ -173,14 +173,31 @@ Three separate asks, in order:
    form/detail pair in Phase 1-2, so it still uses the original flat
    name/description/key-value editor) — confirmed via a headless-Chromium
    test (session gate bypassed for the test only, reverted immediately after).
-3. 🔜 **Not started.** Model's own ILCD-like format still needs to be filled in, same
-   treatment as Phase 2's five types. Not yet researched — real ILCD calls
-   this a "Life Cycle Model" dataset (`lifeCycleModelDataSet`, tiangong-lca-next's
-   `src/pages/LifeCycleModels`), which is structurally different from the
-   other 6 (it's a process graph/flowchart, not a flat document) and wasn't
-   covered by the 2026-09-11 schema research (which only covered the 6 types
-   named at the time). Needs its own schema-research pass when this phase
-   starts, same approach as the 2026-09-11 research fork.
+3. ✅ **Done.** Researched the real "Life Cycle Model" (`lifeCycleModelDataSet`)
+   structure via a research fork, scoped to the document shape only — not the
+   real app's visual X6Graph flowchart editor or its matrix-solving
+   calculation engine, both explicitly out of scope. Key finding:
+   `technology.processes.processInstance[]` is the graph — each instance
+   references a real Process dataset (the same `DatasetRef` pattern already
+   used everywhere) plus a `multiplicationFactor`; connections are declared
+   only from the output side (`outputExchange.downstreamProcess`), and the
+   model's own reference output (`quantitativeReference.referenceToReferenceProcess`)
+   is a plain id pointing at one instance — exactly analogous to Process's
+   `referenceToReferenceFlow`. `name`/`classification`/`generalComment` and
+   the admin block reuse Process's exact shape (not the 5-type shared minimal
+   admin). Built as `ModelDataSet` in `src/lib/ilcd.ts` (reusing
+   `ProcessDataSet["administrativeInformation"]` via a type alias) with a
+   4-tab `ModelForm.tsx`/`ModelDetail.tsx` pair: Model information, Modelling
+   and validation, Administrative information, Process instances (a flat
+   instance table + a `{fromInstanceId, toInstanceId}` connections table,
+   instead of a drag-and-drop graph editor). `DatasetForm.tsx`/`DatasetDetail.tsx`
+   simplified into pure type-dispatchers now that all 7 sidebar types have
+   dedicated pages — the old generic flat key-value editor is gone entirely.
+   Migrated all 3 existing Model mock/seed rows (each a linear process chain)
+   into instance+connection lists; all process references resolved cleanly.
+   Verified via headless-Chromium (list, detail with the starred reference
+   process and connection table, edit form) — `tsc`/`build`/`lint` clean.
+   **Phase 3 is now fully done.**
 
 ### Phase 4 — Import more real data via the lca-mcp MCP server 🔜 not started
 
@@ -234,7 +251,6 @@ user asked for it last.
 ## Execution order (as requested 2026-09-11)
 
 1. Phase 2 — Flow, Flow Property, Unit Group, Source, Contact ILCD formats ✅ done
-2. Phase 3 — Model external link button (done) and Edit (confirmed working,
-   done); Model's own ILCD-like format 🔜 next
+2. Phase 3 — Model external link button, Model Edit, Model's own ILCD format ✅ done
 3. Phase 4 — MCP-driven import extended to Models / Flows / Flow Properties /
-   Sources / Unit Groups 🔜 not started
+   Sources / Unit Groups 🔜 next
