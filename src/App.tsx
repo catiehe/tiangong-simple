@@ -14,7 +14,7 @@ import { DatasetForm } from "@/pages/DatasetForm"
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <TooltipProvider>
         <SidebarProvider>
           <AppSidebar />
