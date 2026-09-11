@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, Navigate, useParams } from "react-router-dom"
-import { Eye, Pencil, Plus, Trash2 } from "lucide-react"
+import { Eye, ExternalLink, Pencil, Plus, Trash2 } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -65,12 +65,26 @@ export function DatasetList() {
     <Card>
       <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <CardTitle>{typeInfo.label}</CardTitle>
-        <Button asChild size="sm" className="self-start sm:self-auto">
-          <Link to={`/open-data/${typeInfo.type}/new`}>
-            <Plus className="size-4" />
-            Add
-          </Link>
-        </Button>
+        <div className="flex items-center gap-2 self-start sm:self-auto">
+          {typeInfo.type === "model" && (
+            <Button asChild size="sm" variant="outline">
+              <a
+                href="https://github.com/calvinw/product-graph-editor"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="size-4" />
+                Product Graph Editor
+              </a>
+            </Button>
+          )}
+          <Button asChild size="sm">
+            <Link to={`/open-data/${typeInfo.type}/new`}>
+              <Plus className="size-4" />
+              Add
+            </Link>
+          </Button>
+        </div>
       </CardHeader>
       <CardContent>
         <Table>

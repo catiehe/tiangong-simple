@@ -158,21 +158,22 @@ Per the 2026-09-11 schema research, the field-level shape per type:
 
 **Model is explicitly excluded from this phase** — see Phase 3.
 
-### Phase 3 — Model: external link + Edit + eventual ILCD format 🔜 not started
+### Phase 3 — Model: external link + Edit + eventual ILCD format 🚧 in progress (2026-09-11)
 
 Three separate asks, in order:
 
-1. **Add a button/link on the Models page** pointing to
-   https://github.com/calvinw/product-graph-editor (also a GitHub Pages
-   project — same author/stack this app's scaffold was originally lifted
-   from). Small, self-contained — a `Button`/`Link` with an external `<a
-   href>`, no data-model change.
-2. **Model needs an Edit view**, same as the other 6 types already have
-   (currently Models only has the generic `DatasetForm`/`DatasetDetail` — need
-   to confirm it's actually reachable/working the same way the others are; if
-   it already works via the generic editor this is just verifying, not new
-   code).
-3. **Model's own ILCD-like format still needs to be filled in**, same
+1. ✅ **Done.** Added a "Product Graph Editor" button on the Models list page
+   (`DatasetList.tsx`, shown only when `typeInfo.type === "model"`), an
+   external link to https://github.com/calvinw/product-graph-editor opening
+   in a new tab. Verified with a headless-Chromium screenshot at both desktop
+   and mobile widths.
+2. ✅ **Done — turned out to already work, no new code needed.** Verified
+   `/open-data/model/:id/edit` was already reachable and rendering correctly
+   through the existing generic `DatasetForm` (Models never got a specialized
+   form/detail pair in Phase 1-2, so it still uses the original flat
+   name/description/key-value editor) — confirmed via a headless-Chromium
+   test (session gate bypassed for the test only, reverted immediately after).
+3. 🔜 **Not started.** Model's own ILCD-like format still needs to be filled in, same
    treatment as Phase 2's five types. Not yet researched — real ILCD calls
    this a "Life Cycle Model" dataset (`lifeCycleModelDataSet`, tiangong-lca-next's
    `src/pages/LifeCycleModels`), which is structurally different from the
@@ -233,7 +234,7 @@ user asked for it last.
 ## Execution order (as requested 2026-09-11)
 
 1. Phase 2 — Flow, Flow Property, Unit Group, Source, Contact ILCD formats ✅ done
-2. Phase 3 — Model external link button, then Model Edit, then Model's own
-   ILCD-like format 🔜 next
+2. Phase 3 — Model external link button (done) and Edit (confirmed working,
+   done); Model's own ILCD-like format 🔜 next
 3. Phase 4 — MCP-driven import extended to Models / Flows / Flow Properties /
    Sources / Unit Groups 🔜 not started
