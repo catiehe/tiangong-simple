@@ -4,6 +4,11 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { getDataset, getDatasetTypeInfo, type Dataset } from "@/lib/datasets"
 import { ProcessDetail } from "@/pages/ProcessDetail"
+import { FlowDetail } from "@/pages/FlowDetail"
+import { FlowPropertyDetail } from "@/pages/FlowPropertyDetail"
+import { UnitGroupDetail } from "@/pages/UnitGroupDetail"
+import { SourceDetail } from "@/pages/SourceDetail"
+import { ContactDetail } from "@/pages/ContactDetail"
 
 export function DatasetDetail() {
   const { type, id } = useParams<{ type: string; id: string }>()
@@ -17,6 +22,11 @@ export function DatasetDetail() {
 
   if (!typeInfo) return null
   if (typeInfo.type === "process") return <ProcessDetail />
+  if (typeInfo.type === "flow") return <FlowDetail />
+  if (typeInfo.type === "flow_property") return <FlowPropertyDetail />
+  if (typeInfo.type === "unit_group") return <UnitGroupDetail />
+  if (typeInfo.type === "source") return <SourceDetail />
+  if (typeInfo.type === "contact") return <ContactDetail />
   if (dataset === undefined) return null
   if (dataset === null) {
     return <p className="text-muted-foreground">Not found.</p>

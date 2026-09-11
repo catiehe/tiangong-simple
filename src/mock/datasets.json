@@ -5,8 +5,48 @@
     "name": "Mass",
     "description": "Standard mass flow property.",
     "payload": {
-      "unit_group": "Units of mass",
-      "default_unit": "kg"
+      "flowPropertiesInformation": {
+        "dataSetInformation": {
+          "name": [
+            {
+              "lang": "en",
+              "text": "Mass"
+            }
+          ],
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Standard mass flow property."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceUnitGroup": {
+            "refObjectId": "55555555-5555-5555-5555-555555555555",
+            "type": "unit_group",
+            "shortDescription": "Units of mass"
+          }
+        }
+      },
+      "modellingAndValidation": {
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": ""
+        },
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:00:00Z"
+      }
     },
     "created_at": "2026-01-05T10:00:00Z"
   },
@@ -16,8 +56,48 @@
     "name": "Net calorific value",
     "description": "Lower heating value flow property, used for fuels and energy carriers.",
     "payload": {
-      "unit_group": "Units of energy",
-      "default_unit": "MJ"
+      "flowPropertiesInformation": {
+        "dataSetInformation": {
+          "name": [
+            {
+              "lang": "en",
+              "text": "Net calorific value"
+            }
+          ],
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Lower heating value flow property, used for fuels and energy carriers."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceUnitGroup": {
+            "refObjectId": "55555555-5555-5555-5555-555555555556",
+            "type": "unit_group",
+            "shortDescription": "Units of energy"
+          }
+        }
+      },
+      "modellingAndValidation": {
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": ""
+        },
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:01:00Z"
+      }
     },
     "created_at": "2026-01-05T10:01:00Z"
   },
@@ -27,8 +107,48 @@
     "name": "Gross calorific value",
     "description": "Higher heating value flow property, used for fuels and energy carriers.",
     "payload": {
-      "unit_group": "Units of energy",
-      "default_unit": "MJ"
+      "flowPropertiesInformation": {
+        "dataSetInformation": {
+          "name": [
+            {
+              "lang": "en",
+              "text": "Gross calorific value"
+            }
+          ],
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Higher heating value flow property, used for fuels and energy carriers."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceUnitGroup": {
+            "refObjectId": "55555555-5555-5555-5555-555555555556",
+            "type": "unit_group",
+            "shortDescription": "Units of energy"
+          }
+        }
+      },
+      "modellingAndValidation": {
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": ""
+        },
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:02:00Z"
+      }
     },
     "created_at": "2026-01-05T10:02:00Z"
   },
@@ -38,8 +158,48 @@
     "name": "Transport service",
     "description": "Freight transport flow property, mass moved over distance.",
     "payload": {
-      "unit_group": "Units of transport service",
-      "default_unit": "tkm"
+      "flowPropertiesInformation": {
+        "dataSetInformation": {
+          "name": [
+            {
+              "lang": "en",
+              "text": "Transport service"
+            }
+          ],
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Freight transport flow property, mass moved over distance."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceUnitGroup": {
+            "refObjectId": "55555555-5555-5555-5555-555555555557",
+            "type": "unit_group",
+            "shortDescription": "Units of transport service"
+          }
+        }
+      },
+      "modellingAndValidation": {
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": ""
+        },
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:03:00Z"
+      }
     },
     "created_at": "2026-01-05T10:03:00Z"
   },
@@ -49,8 +209,48 @@
     "name": "Volume",
     "description": "Standard volume flow property.",
     "payload": {
-      "unit_group": "Units of volume",
-      "default_unit": "L"
+      "flowPropertiesInformation": {
+        "dataSetInformation": {
+          "name": [
+            {
+              "lang": "en",
+              "text": "Volume"
+            }
+          ],
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Standard volume flow property."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceUnitGroup": {
+            "refObjectId": "55555555-5555-5555-5555-555555555558",
+            "type": "unit_group",
+            "shortDescription": "Units of volume"
+          }
+        }
+      },
+      "modellingAndValidation": {
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": ""
+        },
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:04:00Z"
+      }
     },
     "created_at": "2026-01-05T10:04:00Z"
   },
@@ -60,11 +260,58 @@
     "name": "Units of mass",
     "description": "Mass-based units of measure.",
     "payload": {
-      "reference_unit": "kg",
+      "unitGroupInformation": {
+        "dataSetInformation": {
+          "name": [
+            {
+              "lang": "en",
+              "text": "Units of mass"
+            }
+          ],
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Mass-based units of measure."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceUnit": 1
+        }
+      },
+      "modellingAndValidation": {
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:10:00Z"
+      },
       "units": [
-        "kg",
-        "g",
-        "t"
+        {
+          "dataSetInternalID": 1,
+          "name": "kg",
+          "meanValue": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "name": "g",
+          "meanValue": 0.001,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "name": "t",
+          "meanValue": 1000,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:10:00Z"
@@ -75,11 +322,58 @@
     "name": "Units of energy",
     "description": "Energy-based units of measure.",
     "payload": {
-      "reference_unit": "MJ",
+      "unitGroupInformation": {
+        "dataSetInformation": {
+          "name": [
+            {
+              "lang": "en",
+              "text": "Units of energy"
+            }
+          ],
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Energy-based units of measure."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceUnit": 1
+        }
+      },
+      "modellingAndValidation": {
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:11:00Z"
+      },
       "units": [
-        "MJ",
-        "kWh",
-        "GJ"
+        {
+          "dataSetInternalID": 1,
+          "name": "MJ",
+          "meanValue": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "name": "kWh",
+          "meanValue": 3.6,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "name": "GJ",
+          "meanValue": 1000,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:11:00Z"
@@ -90,9 +384,46 @@
     "name": "Units of transport service",
     "description": "Freight transport units of measure.",
     "payload": {
-      "reference_unit": "tkm",
+      "unitGroupInformation": {
+        "dataSetInformation": {
+          "name": [
+            {
+              "lang": "en",
+              "text": "Units of transport service"
+            }
+          ],
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Freight transport units of measure."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceUnit": 1
+        }
+      },
+      "modellingAndValidation": {
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:12:00Z"
+      },
       "units": [
-        "tkm"
+        {
+          "dataSetInternalID": 1,
+          "name": "tkm",
+          "meanValue": 1,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:12:00Z"
@@ -103,10 +434,52 @@
     "name": "Units of volume",
     "description": "Volume-based units of measure.",
     "payload": {
-      "reference_unit": "L",
+      "unitGroupInformation": {
+        "dataSetInformation": {
+          "name": [
+            {
+              "lang": "en",
+              "text": "Units of volume"
+            }
+          ],
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Volume-based units of measure."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceUnit": 1
+        }
+      },
+      "modellingAndValidation": {
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:13:00Z"
+      },
       "units": [
-        "L",
-        "m3"
+        {
+          "dataSetInternalID": 1,
+          "name": "L",
+          "meanValue": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "name": "m3",
+          "meanValue": 1000,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:13:00Z"
@@ -117,8 +490,58 @@
     "name": "Carbon dioxide, fossil",
     "description": "Elementary flow: fossil CO2 emission to air.",
     "payload": {
-      "flow_type": "elementary",
-      "reference_flow_property": "Mass"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Carbon dioxide, fossil"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Elementary flow: fossil CO2 emission to air."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Elementary flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:20:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444444",
+            "type": "flow_property",
+            "shortDescription": "Mass"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:20:00Z"
   },
@@ -128,8 +551,58 @@
     "name": "Water, unspecified natural origin",
     "description": "Elementary flow: water withdrawn from the environment.",
     "payload": {
-      "flow_type": "elementary",
-      "reference_flow_property": "Volume"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Water, unspecified natural origin"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Elementary flow: water withdrawn from the environment."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Elementary flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:21:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444448",
+            "type": "flow_property",
+            "shortDescription": "Volume"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:21:00Z"
   },
@@ -139,8 +612,58 @@
     "name": "Natural gas, high pressure",
     "description": "Product flow: natural gas delivered at high pressure.",
     "payload": {
-      "flow_type": "product",
-      "reference_flow_property": "Net calorific value"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Natural gas, high pressure"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Product flow: natural gas delivered at high pressure."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Product flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:22:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444445",
+            "type": "flow_property",
+            "shortDescription": "Net calorific value"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:22:00Z"
   },
@@ -150,8 +673,58 @@
     "name": "Electricity, high voltage",
     "description": "Product flow: electricity supplied at high voltage.",
     "payload": {
-      "flow_type": "product",
-      "reference_flow_property": "Net calorific value"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Electricity, high voltage"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Product flow: electricity supplied at high voltage."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Product flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:23:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444445",
+            "type": "flow_property",
+            "shortDescription": "Net calorific value"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:23:00Z"
   },
@@ -161,8 +734,58 @@
     "name": "Steel, low-alloyed",
     "description": "Product flow: low-alloyed steel.",
     "payload": {
-      "flow_type": "product",
-      "reference_flow_property": "Mass"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Steel, low-alloyed"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Product flow: low-alloyed steel."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Product flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:24:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444444",
+            "type": "flow_property",
+            "shortDescription": "Mass"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:24:00Z"
   },
@@ -172,8 +795,58 @@
     "name": "Cotton fiber, raw",
     "description": "Product flow: raw cotton fiber output of fiber production.",
     "payload": {
-      "flow_type": "product",
-      "reference_flow_property": "Mass"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Cotton fiber, raw"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Product flow: raw cotton fiber output of fiber production."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Product flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:25:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444444",
+            "type": "flow_property",
+            "shortDescription": "Mass"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:25:00Z"
   },
@@ -183,8 +856,58 @@
     "name": "Cotton fabric, woven",
     "description": "Product flow: woven, undyed cotton fabric.",
     "payload": {
-      "flow_type": "product",
-      "reference_flow_property": "Mass"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Cotton fabric, woven"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Product flow: woven, undyed cotton fabric."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Product flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:26:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444444",
+            "type": "flow_property",
+            "shortDescription": "Mass"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:26:00Z"
   },
@@ -194,8 +917,58 @@
     "name": "Cotton fabric, dyed",
     "description": "Product flow: dyed and finished cotton fabric.",
     "payload": {
-      "flow_type": "product",
-      "reference_flow_property": "Mass"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Cotton fabric, dyed"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Product flow: dyed and finished cotton fabric."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Product flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:27:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444444",
+            "type": "flow_property",
+            "shortDescription": "Mass"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:27:00Z"
   },
@@ -205,8 +978,58 @@
     "name": "Cotton t-shirt",
     "description": "Product flow: finished, sewn cotton t-shirt.",
     "payload": {
-      "flow_type": "product",
-      "reference_flow_property": "Mass"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Cotton t-shirt"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Product flow: finished, sewn cotton t-shirt."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Product flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:28:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444444",
+            "type": "flow_property",
+            "shortDescription": "Mass"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:28:00Z"
   },
@@ -216,8 +1039,58 @@
     "name": "Dyestuff, reactive",
     "description": "Product flow: reactive dye used in textile dyeing.",
     "payload": {
-      "flow_type": "product",
-      "reference_flow_property": "Mass"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Dyestuff, reactive"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Product flow: reactive dye used in textile dyeing."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Product flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:29:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444444",
+            "type": "flow_property",
+            "shortDescription": "Mass"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:29:00Z"
   },
@@ -227,8 +1100,58 @@
     "name": "Wastewater, textile industry",
     "description": "Elementary flow: process wastewater discharged from textile dyeing.",
     "payload": {
-      "flow_type": "elementary",
-      "reference_flow_property": "Volume"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Wastewater, textile industry"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Elementary flow: process wastewater discharged from textile dyeing."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Elementary flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:30:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444448",
+            "type": "flow_property",
+            "shortDescription": "Volume"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:30:00Z"
   },
@@ -238,8 +1161,58 @@
     "name": "Transport, freight, lorry",
     "description": "Product flow: road freight transport service.",
     "payload": {
-      "flow_type": "product",
-      "reference_flow_property": "Transport service"
+      "flowInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Transport, freight, lorry"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "casNumber": "",
+          "sumFormula": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Product flow: road freight transport service."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlowProperty": 1
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Product flow",
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:31:00Z"
+      },
+      "flowProperties": [
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowPropertyDataSet": {
+            "refObjectId": "44444444-4444-4444-4444-444444444447",
+            "type": "flow_property",
+            "shortDescription": "Transport service"
+          },
+          "meanValue": 1,
+          "generalComment": []
+        }
+      ]
     },
     "created_at": "2026-01-05T10:31:00Z"
   },
@@ -1277,8 +2250,40 @@
     "name": "ecoinvent 3.10",
     "description": "Background LCI database used for upstream processes.",
     "payload": {
-      "publisher": "ecoinvent Association",
-      "year": 2026
+      "sourceInformation": {
+        "dataSetInformation": {
+          "shortName": [
+            {
+              "lang": "en",
+              "text": "ecoinvent 3.10"
+            }
+          ],
+          "classification": [],
+          "sourceCitation": "ecoinvent Association, 2026",
+          "publicationType": "Software or database",
+          "sourceDescriptionOrComment": [
+            {
+              "lang": "en",
+              "text": "Background LCI database used for upstream processes."
+            }
+          ],
+          "referenceToContact": {
+            "refObjectId": "77777777-7777-7777-7777-777777777778",
+            "type": "contact",
+            "shortDescription": "ecoinvent Association"
+          }
+        }
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:50:00Z"
+      }
     },
     "created_at": "2026-01-05T10:50:00Z"
   },
@@ -1288,8 +2293,40 @@
     "name": "GaBi Professional database 2025",
     "description": "Background LCI database used for industrial material processes.",
     "payload": {
-      "publisher": "Sphera",
-      "year": 2025
+      "sourceInformation": {
+        "dataSetInformation": {
+          "shortName": [
+            {
+              "lang": "en",
+              "text": "GaBi Professional database 2025"
+            }
+          ],
+          "classification": [],
+          "sourceCitation": "Sphera, 2025",
+          "publicationType": "Software or database",
+          "sourceDescriptionOrComment": [
+            {
+              "lang": "en",
+              "text": "Background LCI database used for industrial material processes."
+            }
+          ],
+          "referenceToContact": {
+            "refObjectId": "77777777-7777-7777-7777-777777777779",
+            "type": "contact",
+            "shortDescription": "Sphera"
+          }
+        }
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:51:00Z"
+      }
     },
     "created_at": "2026-01-05T10:51:00Z"
   },
@@ -1299,8 +2336,40 @@
     "name": "ISO 14040:2006",
     "description": "Environmental management \u2014 Life cycle assessment \u2014 Principles and framework.",
     "payload": {
-      "publisher": "International Organization for Standardization",
-      "year": 2006
+      "sourceInformation": {
+        "dataSetInformation": {
+          "shortName": [
+            {
+              "lang": "en",
+              "text": "ISO 14040:2006"
+            }
+          ],
+          "classification": [],
+          "sourceCitation": "International Organization for Standardization, 2006",
+          "publicationType": "Software or database",
+          "sourceDescriptionOrComment": [
+            {
+              "lang": "en",
+              "text": "Environmental management \u2014 Life cycle assessment \u2014 Principles and framework."
+            }
+          ],
+          "referenceToContact": {
+            "refObjectId": null,
+            "type": "contact",
+            "shortDescription": "International Organization for Standardization"
+          }
+        }
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:52:00Z"
+      }
     },
     "created_at": "2026-01-05T10:52:00Z"
   },
@@ -1310,8 +2379,40 @@
     "name": "Textile Exchange Preferred Fiber & Materials Report",
     "description": "Background data used for textile fiber, weaving, dyeing, and sewing processes.",
     "payload": {
-      "publisher": "Textile Exchange",
-      "year": 2025
+      "sourceInformation": {
+        "dataSetInformation": {
+          "shortName": [
+            {
+              "lang": "en",
+              "text": "Textile Exchange Preferred Fiber & Materials Report"
+            }
+          ],
+          "classification": [],
+          "sourceCitation": "Textile Exchange, 2025",
+          "publicationType": "Software or database",
+          "sourceDescriptionOrComment": [
+            {
+              "lang": "en",
+              "text": "Background data used for textile fiber, weaving, dyeing, and sewing processes."
+            }
+          ],
+          "referenceToContact": {
+            "refObjectId": "7777777a-7777-7777-7777-77777777777a",
+            "type": "contact",
+            "shortDescription": "Textile Exchange"
+          }
+        }
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T10:53:00Z"
+      }
     },
     "created_at": "2026-01-05T10:53:00Z"
   },
@@ -1321,8 +2422,51 @@
     "name": "Jane Smith",
     "description": "LCA practitioner maintaining this dataset.",
     "payload": {
-      "email": "jane.smith@example.com",
-      "role": "Author"
+      "contactInformation": {
+        "dataSetInformation": {
+          "shortName": [
+            {
+              "lang": "en",
+              "text": "Jane Smith"
+            }
+          ],
+          "name": [
+            {
+              "lang": "en",
+              "text": "Jane Smith"
+            }
+          ],
+          "classification": [],
+          "email": "jane.smith@example.com",
+          "wwwAddress": "",
+          "centralContactPoint": [
+            {
+              "lang": "en",
+              "text": "Author"
+            }
+          ],
+          "contactAddress": "",
+          "telephone": "",
+          "telefax": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "LCA practitioner maintaining this dataset."
+            }
+          ],
+          "referenceToContact": []
+        }
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T11:00:00Z"
+      }
     },
     "created_at": "2026-01-05T11:00:00Z"
   },
@@ -1332,8 +2476,51 @@
     "name": "ecoinvent Association",
     "description": "Publisher and maintainer of the ecoinvent background database.",
     "payload": {
-      "email": "contact@ecoinvent.org",
-      "role": "Data provider"
+      "contactInformation": {
+        "dataSetInformation": {
+          "shortName": [
+            {
+              "lang": "en",
+              "text": "ecoinvent Association"
+            }
+          ],
+          "name": [
+            {
+              "lang": "en",
+              "text": "ecoinvent Association"
+            }
+          ],
+          "classification": [],
+          "email": "contact@ecoinvent.org",
+          "wwwAddress": "",
+          "centralContactPoint": [
+            {
+              "lang": "en",
+              "text": "Data provider"
+            }
+          ],
+          "contactAddress": "",
+          "telephone": "",
+          "telefax": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Publisher and maintainer of the ecoinvent background database."
+            }
+          ],
+          "referenceToContact": []
+        }
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T11:01:00Z"
+      }
     },
     "created_at": "2026-01-05T11:01:00Z"
   },
@@ -1343,8 +2530,51 @@
     "name": "Sphera Solutions",
     "description": "Publisher of the GaBi Professional background database.",
     "payload": {
-      "email": "info@sphera.com",
-      "role": "Data provider"
+      "contactInformation": {
+        "dataSetInformation": {
+          "shortName": [
+            {
+              "lang": "en",
+              "text": "Sphera Solutions"
+            }
+          ],
+          "name": [
+            {
+              "lang": "en",
+              "text": "Sphera Solutions"
+            }
+          ],
+          "classification": [],
+          "email": "info@sphera.com",
+          "wwwAddress": "",
+          "centralContactPoint": [
+            {
+              "lang": "en",
+              "text": "Data provider"
+            }
+          ],
+          "contactAddress": "",
+          "telephone": "",
+          "telefax": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Publisher of the GaBi Professional background database."
+            }
+          ],
+          "referenceToContact": []
+        }
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T11:02:00Z"
+      }
     },
     "created_at": "2026-01-05T11:02:00Z"
   },
@@ -1354,8 +2584,51 @@
     "name": "Textile Exchange",
     "description": "Publisher of textile fiber and materials background data.",
     "payload": {
-      "email": "info@textileexchange.org",
-      "role": "Data provider"
+      "contactInformation": {
+        "dataSetInformation": {
+          "shortName": [
+            {
+              "lang": "en",
+              "text": "Textile Exchange"
+            }
+          ],
+          "name": [
+            {
+              "lang": "en",
+              "text": "Textile Exchange"
+            }
+          ],
+          "classification": [],
+          "email": "info@textileexchange.org",
+          "wwwAddress": "",
+          "centralContactPoint": [
+            {
+              "lang": "en",
+              "text": "Data provider"
+            }
+          ],
+          "contactAddress": "",
+          "telephone": "",
+          "telefax": "",
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Publisher of textile fiber and materials background data."
+            }
+          ],
+          "referenceToContact": []
+        }
+      },
+      "administrativeInformation": {
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "timeStamp": "2026-01-05T11:03:00Z"
+      }
     },
     "created_at": "2026-01-05T11:03:00Z"
   },

@@ -12,26 +12,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { getDataset, type Dataset } from "@/lib/datasets"
-import { LANGS, LANG_LABELS, getLangText, toProcessDataSet, type LangText } from "@/lib/ilcd"
-
-function LangRow({ label, value }: { label: string; value: LangText[] }) {
-  if (value.length === 0) return null
-  return (
-    <div className="flex flex-col gap-1">
-      <p className="text-sm font-medium">{label}</p>
-      {LANGS.map((lang) => {
-        const text = getLangText(value, lang)
-        if (!text) return null
-        return (
-          <p key={lang} className="text-muted-foreground text-sm">
-            <span className="mr-2 text-xs">{LANG_LABELS[lang]}</span>
-            {text}
-          </p>
-        )
-      })}
-    </div>
-  )
-}
+import { toProcessDataSet } from "@/lib/ilcd"
+import { LangRow } from "@/components/ilcd/lang-row"
 
 export function ProcessDetail() {
   const { id } = useParams<{ id: string }>()

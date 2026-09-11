@@ -16,6 +16,11 @@ import {
 import { supabase } from "@/lib/supabase"
 import { useSessionStore } from "@/state/session"
 import { ProcessForm } from "@/pages/ProcessForm"
+import { FlowForm } from "@/pages/FlowForm"
+import { FlowPropertyForm } from "@/pages/FlowPropertyForm"
+import { UnitGroupForm } from "@/pages/UnitGroupForm"
+import { SourceForm } from "@/pages/SourceForm"
+import { ContactForm } from "@/pages/ContactForm"
 
 interface PayloadRow {
   key: string
@@ -68,6 +73,11 @@ export function DatasetForm() {
 
   if (!typeInfo) return <Navigate to="/open-data/process" replace />
   if (typeInfo.type === "process") return <ProcessForm />
+  if (typeInfo.type === "flow") return <FlowForm />
+  if (typeInfo.type === "flow_property") return <FlowPropertyForm />
+  if (typeInfo.type === "unit_group") return <UnitGroupForm />
+  if (typeInfo.type === "source") return <SourceForm />
+  if (typeInfo.type === "contact") return <ContactForm />
   if (!session) return <Navigate to="/sign-in" replace />
   if (id && existing === undefined) return null
   if (id && existing === null) {

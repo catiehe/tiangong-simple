@@ -101,11 +101,37 @@ what's broken right now (process pages render mostly blank against live data
 pre-reseed); the other 6 types are unaffected since their shape hasn't changed
 yet.
 
-### Phase 2 — Flow, Flow Property, Unit Group, Source, Contact 🔜 not started
+### Phase 2 — Flow, Flow Property, Unit Group, Source, Contact ✅ done (2026-09-11)
 
-Same treatment as Process, one type at a time, reusing `LangTextField` /
-`DatasetRefField` / the normalizer pattern in `src/lib/ilcd.ts`. Per the
-2026-09-11 schema research:
+Same treatment as Process, reusing `LangTextField` / `DatasetRefField` / the
+normalizer pattern in `src/lib/ilcd.ts`. Built simplest-to-most-complex —
+Contact → Source → Unit Group → Flow Property → Flow — each as a `*Form.tsx`/
+`*Detail.tsx` pair (`ContactForm`/`ContactDetail`, `SourceForm`/`SourceDetail`,
+`UnitGroupForm`/`UnitGroupDetail`, `FlowPropertyForm`/`FlowPropertyDetail`,
+`FlowForm`/`FlowDetail`), dispatched from `DatasetForm.tsx`/`DatasetDetail.tsx`
+the same way Process is. Extracted the inline `LangRow` display helper out of
+`ProcessDetail.tsx` into `src/components/ilcd/lang-row.tsx` since all 6 detail
+pages now need it. `src/lib/ilcd.ts` grew a `SharedAdministrativeInformation`
+type (the dataEntryBy/publicationAndOwnership fields common to all 5 of these
+types, since none of them have Process's commissioner/dataGenerator/copyright/
+licenseType extras) plus defensive normalizers per type, same pattern as
+Process's `normalizeExchanges`.
+
+Migrated all existing mock/seed rows for these 5 types (4 contacts, 4 sources,
+4 unit groups, 5 flow properties, 12 flows — 29 rows) into the new shapes.
+Cross-references resolved cleanly since this data was already hand-authored to
+be consistent: all 4 flow-property→unit-group refs and all 12 flow→flow-property
+refs resolved; only one source→contact ref stayed unresolved (ISO 14040:2006's
+publisher has no matching Contact record — correctly preserved as free text,
+not fabricated). Verified via a headless-Chromium smoke test (list + detail for
+all 5 types, zero console errors) against the mock-data fallback, and edit-form
+rendering verified against a real Supabase-configured build (session gate
+bypassed for the test only, reverted immediately after).
+
+**Same outstanding action as Phase 1**: the live Supabase project needs
+`supabase/seed.sql` re-run for these 5 types too, same as Process.
+
+Per the 2026-09-11 schema research, the field-level shape per type:
 
 - **Flow** (3 tabs: Flow information / Modelling and validation /
   Administrative information). Key structural piece: a repeatable
@@ -130,12 +156,7 @@ Same treatment as Process, one type at a time, reusing `LangTextField` /
   `referenceToContact[]` (repeatable — an org can link to its individual staff
   contacts).
 
-Each type needs: types added to `src/lib/ilcd.ts` (or a sibling file per type
-if `ilcd.ts` gets unwieldy), a `*Form.tsx`/`*Detail.tsx` pair, a dispatch line
-in `DatasetForm.tsx`/`DatasetDetail.tsx`, and a data migration of the existing
-mock/seed rows for that type (smaller lift than Process — these types don't
-have anything like the exchanges list). **Model is explicitly excluded from
-this phase** — see Phase 3.
+**Model is explicitly excluded from this phase** — see Phase 3.
 
 ### Phase 3 — Model: external link + Edit + eventual ILCD format 🔜 not started
 
@@ -211,11 +232,8 @@ user asked for it last.
 
 ## Execution order (as requested 2026-09-11)
 
-1. Phase 2 — Flow, Flow Property, Unit Group, Source, Contact ILCD formats
+1. Phase 2 — Flow, Flow Property, Unit Group, Source, Contact ILCD formats ✅ done
 2. Phase 3 — Model external link button, then Model Edit, then Model's own
-   ILCD-like format
+   ILCD-like format 🔜 next
 3. Phase 4 — MCP-driven import extended to Models / Flows / Flow Properties /
-   Sources / Unit Groups
-
-Plan only, per request — nothing in this phase list has been started or
-implemented yet. Confirm before I start Phase 2.
+   Sources / Unit Groups 🔜 not started

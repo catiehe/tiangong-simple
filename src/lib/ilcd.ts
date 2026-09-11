@@ -229,3 +229,436 @@ function normalizeExchanges(value: unknown): ProcessExchange[] {
     }
   })
 }
+
+/**
+ * The "shared" admin block per the 2026-09-11 schema research: every ILCD type
+ * carries dataEntryBy/publicationAndOwnership; Process additionally has
+ * commissioner/dataGenerator/copyright/licenseType, which the other 5 types
+ * (Contact, Source, Unit Group, Flow Property, Flow) don't.
+ */
+export interface SharedAdministrativeInformation {
+  referenceToOwnershipOfDataSet: DatasetRef
+  dataSetVersion: string
+  permanentDataSetURI: string
+  timeStamp: string
+}
+
+function emptySharedAdmin(): SharedAdministrativeInformation {
+  return {
+    referenceToOwnershipOfDataSet: emptyRef("contact"),
+    dataSetVersion: "01.01.000",
+    permanentDataSetURI: "",
+    timeStamp: new Date().toISOString(),
+  }
+}
+
+function toSharedAdmin(p: Partial<SharedAdministrativeInformation> | undefined): SharedAdministrativeInformation {
+  const empty = emptySharedAdmin()
+  return {
+    referenceToOwnershipOfDataSet: p?.referenceToOwnershipOfDataSet ?? empty.referenceToOwnershipOfDataSet,
+    dataSetVersion: p?.dataSetVersion ?? empty.dataSetVersion,
+    permanentDataSetURI: p?.permanentDataSetURI ?? "",
+    timeStamp: p?.timeStamp ?? empty.timeStamp,
+  }
+}
+
+function normalizeComplianceDeclarations(value: unknown): ComplianceDeclaration[] {
+  if (!Array.isArray(value)) return []
+  return value.map((v) => {
+    const c = (v ?? {}) as Partial<ComplianceDeclaration>
+    return {
+      referenceToComplianceSystem: c.referenceToComplianceSystem ?? "",
+      approvalOfOverallCompliance: c.approvalOfOverallCompliance ?? "",
+    }
+  })
+}
+
+function normalizeRefList(value: unknown, type: DatasetType): DatasetRef[] {
+  if (!Array.isArray(value)) return []
+  return value.map((v) => {
+    const r = (v ?? {}) as Partial<DatasetRef>
+    return {
+      refObjectId: r.refObjectId ?? null,
+      type: r.type ?? type,
+      shortDescription: r.shortDescription ?? "",
+    }
+  })
+}
+
+// ---------------------------------------------------------------------------
+// Contact — 2 tabs, the simplest of the 6 types: an address-book entry.
+// ---------------------------------------------------------------------------
+
+export interface ContactDataSet {
+  contactInformation: {
+    dataSetInformation: {
+      shortName: LangText[]
+      name: LangText[]
+      classification: string[]
+      email: string
+      wwwAddress: string
+      centralContactPoint: LangText[]
+      contactAddress: string
+      telephone: string
+      telefax: string
+      generalComment: LangText[]
+      referenceToContact: DatasetRef[]
+    }
+  }
+  administrativeInformation: SharedAdministrativeInformation
+}
+
+export function emptyContactDataSet(): ContactDataSet {
+  return {
+    contactInformation: {
+      dataSetInformation: {
+        shortName: [],
+        name: [],
+        classification: [],
+        email: "",
+        wwwAddress: "",
+        centralContactPoint: [],
+        contactAddress: "",
+        telephone: "",
+        telefax: "",
+        generalComment: [],
+        referenceToContact: [],
+      },
+    },
+    administrativeInformation: emptySharedAdmin(),
+  }
+}
+
+export function toContactDataSet(payload: unknown): ContactDataSet {
+  const p = (payload ?? {}) as Partial<ContactDataSet>
+  const di = p.contactInformation?.dataSetInformation
+  return {
+    contactInformation: {
+      dataSetInformation: {
+        shortName: di?.shortName ?? [],
+        name: di?.name ?? [],
+        classification: di?.classification ?? [],
+        email: di?.email ?? "",
+        wwwAddress: di?.wwwAddress ?? "",
+        centralContactPoint: di?.centralContactPoint ?? [],
+        contactAddress: di?.contactAddress ?? "",
+        telephone: di?.telephone ?? "",
+        telefax: di?.telefax ?? "",
+        generalComment: di?.generalComment ?? [],
+        referenceToContact: normalizeRefList(di?.referenceToContact, "contact"),
+      },
+    },
+    administrativeInformation: toSharedAdmin(p.administrativeInformation),
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Source — 2 tabs, close to a citation record.
+// ---------------------------------------------------------------------------
+
+export const PUBLICATION_TYPES = [
+  "Undefined",
+  "Article in periodical",
+  "Chapter in anthology",
+  "Monograph",
+  "Direct measurement",
+  "Oral communication",
+  "Personal written communication",
+  "Questionnaire",
+  "Software or database",
+  "Other unpublished and grey literature",
+] as const
+
+export interface SourceDataSet {
+  sourceInformation: {
+    dataSetInformation: {
+      shortName: LangText[]
+      classification: string[]
+      sourceCitation: string
+      publicationType: string
+      sourceDescriptionOrComment: LangText[]
+      referenceToContact: DatasetRef
+    }
+  }
+  administrativeInformation: SharedAdministrativeInformation
+}
+
+export function emptySourceDataSet(): SourceDataSet {
+  return {
+    sourceInformation: {
+      dataSetInformation: {
+        shortName: [],
+        classification: [],
+        sourceCitation: "",
+        publicationType: "",
+        sourceDescriptionOrComment: [],
+        referenceToContact: emptyRef("contact"),
+      },
+    },
+    administrativeInformation: emptySharedAdmin(),
+  }
+}
+
+export function toSourceDataSet(payload: unknown): SourceDataSet {
+  const p = (payload ?? {}) as Partial<SourceDataSet>
+  const di = p.sourceInformation?.dataSetInformation
+  return {
+    sourceInformation: {
+      dataSetInformation: {
+        shortName: di?.shortName ?? [],
+        classification: di?.classification ?? [],
+        sourceCitation: di?.sourceCitation ?? "",
+        publicationType: di?.publicationType ?? "",
+        sourceDescriptionOrComment: di?.sourceDescriptionOrComment ?? [],
+        referenceToContact: di?.referenceToContact ?? emptyRef("contact"),
+      },
+    },
+    administrativeInformation: toSharedAdmin(p.administrativeInformation),
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Unit Group — 3 tabs + a units[] list (e.g. kg/g/t, all relative to one
+// reference unit with a conversion factor of 1.0).
+// ---------------------------------------------------------------------------
+
+export interface UnitGroupUnit {
+  dataSetInternalID: number
+  name: string
+  meanValue: number | null
+  generalComment: LangText[]
+}
+
+export interface UnitGroupDataSet {
+  unitGroupInformation: {
+    dataSetInformation: {
+      name: LangText[]
+      classification: string[]
+      generalComment: LangText[]
+    }
+    quantitativeReference: {
+      referenceToReferenceUnit: number | null
+    }
+  }
+  modellingAndValidation: {
+    complianceDeclarations: ComplianceDeclaration[]
+  }
+  administrativeInformation: SharedAdministrativeInformation
+  units: UnitGroupUnit[]
+}
+
+export function emptyUnitGroupDataSet(): UnitGroupDataSet {
+  return {
+    unitGroupInformation: {
+      dataSetInformation: { name: [], classification: [], generalComment: [] },
+      quantitativeReference: { referenceToReferenceUnit: null },
+    },
+    modellingAndValidation: { complianceDeclarations: [] },
+    administrativeInformation: emptySharedAdmin(),
+    units: [],
+  }
+}
+
+export function toUnitGroupDataSet(payload: unknown): UnitGroupDataSet {
+  const p = (payload ?? {}) as Partial<UnitGroupDataSet>
+  const di = p.unitGroupInformation?.dataSetInformation
+  return {
+    unitGroupInformation: {
+      dataSetInformation: {
+        name: di?.name ?? [],
+        classification: di?.classification ?? [],
+        generalComment: di?.generalComment ?? [],
+      },
+      quantitativeReference: {
+        referenceToReferenceUnit:
+          p.unitGroupInformation?.quantitativeReference?.referenceToReferenceUnit ?? null,
+      },
+    },
+    modellingAndValidation: {
+      complianceDeclarations: normalizeComplianceDeclarations(
+        p.modellingAndValidation?.complianceDeclarations,
+      ),
+    },
+    administrativeInformation: toSharedAdmin(p.administrativeInformation),
+    units: normalizeUnits(p.units),
+  }
+}
+
+function normalizeUnits(value: unknown): UnitGroupUnit[] {
+  if (!Array.isArray(value)) return []
+  return value.map((v, i) => {
+    const u = (v ?? {}) as Partial<UnitGroupUnit>
+    return {
+      dataSetInternalID: u.dataSetInternalID ?? i + 1,
+      name: u.name ?? "",
+      meanValue: u.meanValue ?? null,
+      generalComment: u.generalComment ?? [],
+    }
+  })
+}
+
+// ---------------------------------------------------------------------------
+// Flow Property — 3 tabs, simple: a name + a reference to the Unit Group
+// that defines its unit.
+// ---------------------------------------------------------------------------
+
+export interface FlowPropertyDataSet {
+  flowPropertiesInformation: {
+    dataSetInformation: {
+      name: LangText[]
+      classification: string[]
+      generalComment: LangText[]
+    }
+    quantitativeReference: {
+      referenceToReferenceUnitGroup: DatasetRef
+    }
+  }
+  modellingAndValidation: {
+    referenceToDataSource: DatasetRef
+    complianceDeclarations: ComplianceDeclaration[]
+  }
+  administrativeInformation: SharedAdministrativeInformation
+}
+
+export function emptyFlowPropertyDataSet(): FlowPropertyDataSet {
+  return {
+    flowPropertiesInformation: {
+      dataSetInformation: { name: [], classification: [], generalComment: [] },
+      quantitativeReference: { referenceToReferenceUnitGroup: emptyRef("unit_group") },
+    },
+    modellingAndValidation: {
+      referenceToDataSource: emptyRef("source"),
+      complianceDeclarations: [],
+    },
+    administrativeInformation: emptySharedAdmin(),
+  }
+}
+
+export function toFlowPropertyDataSet(payload: unknown): FlowPropertyDataSet {
+  const p = (payload ?? {}) as Partial<FlowPropertyDataSet>
+  const di = p.flowPropertiesInformation?.dataSetInformation
+  return {
+    flowPropertiesInformation: {
+      dataSetInformation: {
+        name: di?.name ?? [],
+        classification: di?.classification ?? [],
+        generalComment: di?.generalComment ?? [],
+      },
+      quantitativeReference: {
+        referenceToReferenceUnitGroup:
+          p.flowPropertiesInformation?.quantitativeReference?.referenceToReferenceUnitGroup ??
+          emptyRef("unit_group"),
+      },
+    },
+    modellingAndValidation: {
+      referenceToDataSource: p.modellingAndValidation?.referenceToDataSource ?? emptyRef("source"),
+      complianceDeclarations: normalizeComplianceDeclarations(
+        p.modellingAndValidation?.complianceDeclarations,
+      ),
+    },
+    administrativeInformation: toSharedAdmin(p.administrativeInformation),
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Flow — 3 tabs. Key structural piece: a repeatable flowProperties[] list (a
+// flow can carry multiple properties, e.g. Mass + Net calorific value); the
+// quantitative reference points at which entry is the flow's native unit.
+// ---------------------------------------------------------------------------
+
+export interface FlowPropertyAmount {
+  dataSetInternalID: number
+  referenceToFlowPropertyDataSet: DatasetRef
+  meanValue: number | null
+  generalComment: LangText[]
+}
+
+export const FLOW_TYPES = ["Elementary flow", "Product flow", "Waste flow", "Other flow"] as const
+
+export interface FlowDataSet {
+  flowInformation: {
+    dataSetInformation: {
+      name: {
+        baseName: LangText[]
+        treatmentStandardsRoutes: LangText[]
+        mixAndLocationTypes: LangText[]
+      }
+      classification: string[]
+      casNumber: string
+      sumFormula: string
+      generalComment: LangText[]
+    }
+    quantitativeReference: {
+      referenceToReferenceFlowProperty: number | null
+    }
+  }
+  modellingAndValidation: {
+    typeOfDataSet: string
+    complianceDeclarations: ComplianceDeclaration[]
+  }
+  administrativeInformation: SharedAdministrativeInformation
+  flowProperties: FlowPropertyAmount[]
+}
+
+export function emptyFlowDataSet(): FlowDataSet {
+  return {
+    flowInformation: {
+      dataSetInformation: {
+        name: { baseName: [], treatmentStandardsRoutes: [], mixAndLocationTypes: [] },
+        classification: [],
+        casNumber: "",
+        sumFormula: "",
+        generalComment: [],
+      },
+      quantitativeReference: { referenceToReferenceFlowProperty: null },
+    },
+    modellingAndValidation: { typeOfDataSet: "", complianceDeclarations: [] },
+    administrativeInformation: emptySharedAdmin(),
+    flowProperties: [],
+  }
+}
+
+export function toFlowDataSet(payload: unknown): FlowDataSet {
+  const p = (payload ?? {}) as Partial<FlowDataSet>
+  const di = p.flowInformation?.dataSetInformation
+  return {
+    flowInformation: {
+      dataSetInformation: {
+        name: {
+          baseName: di?.name?.baseName ?? [],
+          treatmentStandardsRoutes: di?.name?.treatmentStandardsRoutes ?? [],
+          mixAndLocationTypes: di?.name?.mixAndLocationTypes ?? [],
+        },
+        classification: di?.classification ?? [],
+        casNumber: di?.casNumber ?? "",
+        sumFormula: di?.sumFormula ?? "",
+        generalComment: di?.generalComment ?? [],
+      },
+      quantitativeReference: {
+        referenceToReferenceFlowProperty:
+          p.flowInformation?.quantitativeReference?.referenceToReferenceFlowProperty ?? null,
+      },
+    },
+    modellingAndValidation: {
+      typeOfDataSet: p.modellingAndValidation?.typeOfDataSet ?? "",
+      complianceDeclarations: normalizeComplianceDeclarations(
+        p.modellingAndValidation?.complianceDeclarations,
+      ),
+    },
+    administrativeInformation: toSharedAdmin(p.administrativeInformation),
+    flowProperties: normalizeFlowProperties(p.flowProperties),
+  }
+}
+
+function normalizeFlowProperties(value: unknown): FlowPropertyAmount[] {
+  if (!Array.isArray(value)) return []
+  return value.map((v, i) => {
+    const fp = (v ?? {}) as Partial<FlowPropertyAmount>
+    return {
+      dataSetInternalID: fp.dataSetInternalID ?? i + 1,
+      referenceToFlowPropertyDataSet: fp.referenceToFlowPropertyDataSet ?? emptyRef("flow_property"),
+      meanValue: fp.meanValue ?? null,
+      generalComment: fp.generalComment ?? [],
+    }
+  })
+}
