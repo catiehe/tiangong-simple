@@ -54,7 +54,6 @@
     },
     "created_at": "2026-01-05T10:04:00Z"
   },
-
   {
     "id": "55555555-5555-5555-5555-555555555555",
     "type": "unit_group",
@@ -62,7 +61,11 @@
     "description": "Mass-based units of measure.",
     "payload": {
       "reference_unit": "kg",
-      "units": ["kg", "g", "t"]
+      "units": [
+        "kg",
+        "g",
+        "t"
+      ]
     },
     "created_at": "2026-01-05T10:10:00Z"
   },
@@ -73,7 +76,11 @@
     "description": "Energy-based units of measure.",
     "payload": {
       "reference_unit": "MJ",
-      "units": ["MJ", "kWh", "GJ"]
+      "units": [
+        "MJ",
+        "kWh",
+        "GJ"
+      ]
     },
     "created_at": "2026-01-05T10:11:00Z"
   },
@@ -84,7 +91,9 @@
     "description": "Freight transport units of measure.",
     "payload": {
       "reference_unit": "tkm",
-      "units": ["tkm"]
+      "units": [
+        "tkm"
+      ]
     },
     "created_at": "2026-01-05T10:12:00Z"
   },
@@ -95,11 +104,13 @@
     "description": "Volume-based units of measure.",
     "payload": {
       "reference_unit": "L",
-      "units": ["L", "m3"]
+      "units": [
+        "L",
+        "m3"
+      ]
     },
     "created_at": "2026-01-05T10:13:00Z"
   },
-
   {
     "id": "33333333-3333-3333-3333-333333333333",
     "type": "flow",
@@ -232,21 +243,135 @@
     },
     "created_at": "2026-01-05T10:31:00Z"
   },
-
   {
     "id": "22222222-2222-2222-2222-222222222222",
     "type": "process",
     "name": "Electricity, high voltage {CN}| production mix| Cut-off, U",
     "description": "China grid electricity production mix at high voltage.",
     "payload": {
-      "unit": "kWh",
-      "reference_amount": 1,
-      "source": "ecoinvent 3.10",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Electricity, high voltage {CN}"
+              }
+            ],
+            "treatmentStandardsRoutes": [
+              {
+                "lang": "en",
+                "text": "production mix"
+              }
+            ],
+            "mixAndLocationTypes": [
+              {
+                "lang": "en",
+                "text": "Cut-off, U"
+              }
+            ]
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "China grid electricity production mix at high voltage."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 3
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": "CN"
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": "66666666-6666-6666-6666-666666666666",
+          "type": "source",
+          "shortDescription": "ecoinvent 3.10"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-01-05T10:40:00Z"
+      },
       "exchanges": [
-        { "direction": "input", "flow": "Natural gas, high pressure", "amount": 0.18, "unit": "MJ" },
-        { "direction": "input", "flow": "Water, unspecified natural origin", "amount": 1.2, "unit": "L" },
-        { "direction": "output", "flow": "Electricity, high voltage", "amount": 1, "unit": "kWh" },
-        { "direction": "output", "flow": "Carbon dioxide, fossil", "amount": 0.55, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333335",
+            "type": "flow",
+            "shortDescription": "Natural gas, high pressure"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.18,
+          "resultingAmount": 0.18,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333334",
+            "type": "flow",
+            "shortDescription": "Water, unspecified natural origin"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 1.2,
+          "resultingAmount": 1.2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333336",
+            "type": "flow",
+            "shortDescription": "Electricity, high voltage"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333333",
+            "type": "flow",
+            "shortDescription": "Carbon dioxide, fossil"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.55,
+          "resultingAmount": 0.55,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:40:00Z"
@@ -257,12 +382,105 @@
     "name": "Natural gas, high pressure {RER}| production| Cut-off, U",
     "description": "European natural gas production and delivery at high pressure.",
     "payload": {
-      "unit": "MJ",
-      "reference_amount": 1,
-      "source": "ecoinvent 3.10",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Natural gas, high pressure {RER}"
+              }
+            ],
+            "treatmentStandardsRoutes": [
+              {
+                "lang": "en",
+                "text": "production"
+              }
+            ],
+            "mixAndLocationTypes": [
+              {
+                "lang": "en",
+                "text": "Cut-off, U"
+              }
+            ]
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "European natural gas production and delivery at high pressure."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": "RER"
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": "66666666-6666-6666-6666-666666666666",
+          "type": "source",
+          "shortDescription": "ecoinvent 3.10"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-01-05T10:41:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Natural gas, high pressure", "amount": 1, "unit": "MJ" },
-        { "direction": "output", "flow": "Carbon dioxide, fossil", "amount": 0.02, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333335",
+            "type": "flow",
+            "shortDescription": "Natural gas, high pressure"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333333",
+            "type": "flow",
+            "shortDescription": "Carbon dioxide, fossil"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.02,
+          "resultingAmount": 0.02,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:41:00Z"
@@ -273,14 +491,129 @@
     "name": "Steel, low-alloyed {GLO}| production| Cut-off, U",
     "description": "Global average production of low-alloyed steel.",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "GaBi Professional database 2025",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Steel, low-alloyed {GLO}"
+              }
+            ],
+            "treatmentStandardsRoutes": [
+              {
+                "lang": "en",
+                "text": "production"
+              }
+            ],
+            "mixAndLocationTypes": [
+              {
+                "lang": "en",
+                "text": "Cut-off, U"
+              }
+            ]
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Global average production of low-alloyed steel."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 3
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": "GLO"
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": "66666666-6666-6666-6666-666666666667",
+          "type": "source",
+          "shortDescription": "GaBi Professional database 2025"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-01-05T10:42:00Z"
+      },
       "exchanges": [
-        { "direction": "input", "flow": "Electricity, high voltage", "amount": 0.6, "unit": "kWh" },
-        { "direction": "input", "flow": "Natural gas, high pressure", "amount": 8.5, "unit": "MJ" },
-        { "direction": "output", "flow": "Steel, low-alloyed", "amount": 1, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide, fossil", "amount": 1.9, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333336",
+            "type": "flow",
+            "shortDescription": "Electricity, high voltage"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.6,
+          "resultingAmount": 0.6,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333335",
+            "type": "flow",
+            "shortDescription": "Natural gas, high pressure"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 8.5,
+          "resultingAmount": 8.5,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333337",
+            "type": "flow",
+            "shortDescription": "Steel, low-alloyed"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333333",
+            "type": "flow",
+            "shortDescription": "Carbon dioxide, fossil"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1.9,
+          "resultingAmount": 1.9,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:42:00Z"
@@ -291,14 +624,129 @@
     "name": "Cotton fiber production {IN}| conventional, irrigated| Cut-off, U",
     "description": "Growing and harvesting irrigated conventional cotton fiber in India.",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "ecoinvent 3.10",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Cotton fiber production {IN}"
+              }
+            ],
+            "treatmentStandardsRoutes": [
+              {
+                "lang": "en",
+                "text": "conventional, irrigated"
+              }
+            ],
+            "mixAndLocationTypes": [
+              {
+                "lang": "en",
+                "text": "Cut-off, U"
+              }
+            ]
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Growing and harvesting irrigated conventional cotton fiber in India."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 3
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": "IN"
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": "66666666-6666-6666-6666-666666666666",
+          "type": "source",
+          "shortDescription": "ecoinvent 3.10"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-01-05T10:43:00Z"
+      },
       "exchanges": [
-        { "direction": "input", "flow": "Water, unspecified natural origin", "amount": 2700, "unit": "L" },
-        { "direction": "input", "flow": "Electricity, high voltage", "amount": 0.4, "unit": "kWh" },
-        { "direction": "output", "flow": "Cotton fiber, raw", "amount": 1, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide, fossil", "amount": 1.8, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333334",
+            "type": "flow",
+            "shortDescription": "Water, unspecified natural origin"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 2700,
+          "resultingAmount": 2700,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333336",
+            "type": "flow",
+            "shortDescription": "Electricity, high voltage"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.4,
+          "resultingAmount": 0.4,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333338",
+            "type": "flow",
+            "shortDescription": "Cotton fiber, raw"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333333",
+            "type": "flow",
+            "shortDescription": "Carbon dioxide, fossil"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1.8,
+          "resultingAmount": 1.8,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:43:00Z"
@@ -309,14 +757,129 @@
     "name": "Weaving, cotton fabric {IN}| conventional| Cut-off, U",
     "description": "Weaving raw cotton fiber into undyed woven fabric.",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "Textile Exchange Preferred Fiber & Materials Report",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Weaving, cotton fabric {IN}"
+              }
+            ],
+            "treatmentStandardsRoutes": [
+              {
+                "lang": "en",
+                "text": "conventional"
+              }
+            ],
+            "mixAndLocationTypes": [
+              {
+                "lang": "en",
+                "text": "Cut-off, U"
+              }
+            ]
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Weaving raw cotton fiber into undyed woven fabric."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 3
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": "IN"
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": "66666666-6666-6666-6666-666666666669",
+          "type": "source",
+          "shortDescription": "Textile Exchange Preferred Fiber & Materials Report"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-01-05T10:44:00Z"
+      },
       "exchanges": [
-        { "direction": "input", "flow": "Cotton fiber, raw", "amount": 1.05, "unit": "kg" },
-        { "direction": "input", "flow": "Electricity, high voltage", "amount": 0.3, "unit": "kWh" },
-        { "direction": "output", "flow": "Cotton fabric, woven", "amount": 1, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide, fossil", "amount": 0.2, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333338",
+            "type": "flow",
+            "shortDescription": "Cotton fiber, raw"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 1.05,
+          "resultingAmount": 1.05,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333336",
+            "type": "flow",
+            "shortDescription": "Electricity, high voltage"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.3,
+          "resultingAmount": 0.3,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333339",
+            "type": "flow",
+            "shortDescription": "Cotton fabric, woven"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333333",
+            "type": "flow",
+            "shortDescription": "Carbon dioxide, fossil"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.2,
+          "resultingAmount": 0.2,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:44:00Z"
@@ -327,16 +890,153 @@
     "name": "Dyeing, cotton fabric {IN}| reactive dye, conventional| Cut-off, U",
     "description": "Dyeing and finishing woven cotton fabric with reactive dye.",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "Textile Exchange Preferred Fiber & Materials Report",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Dyeing, cotton fabric {IN}"
+              }
+            ],
+            "treatmentStandardsRoutes": [
+              {
+                "lang": "en",
+                "text": "reactive dye, conventional"
+              }
+            ],
+            "mixAndLocationTypes": [
+              {
+                "lang": "en",
+                "text": "Cut-off, U"
+              }
+            ]
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Dyeing and finishing woven cotton fabric with reactive dye."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 5
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": "IN"
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": "66666666-6666-6666-6666-666666666669",
+          "type": "source",
+          "shortDescription": "Textile Exchange Preferred Fiber & Materials Report"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-01-05T10:45:00Z"
+      },
       "exchanges": [
-        { "direction": "input", "flow": "Cotton fabric, woven", "amount": 1.02, "unit": "kg" },
-        { "direction": "input", "flow": "Dyestuff, reactive", "amount": 0.05, "unit": "kg" },
-        { "direction": "input", "flow": "Water, unspecified natural origin", "amount": 100, "unit": "L" },
-        { "direction": "input", "flow": "Electricity, high voltage", "amount": 0.5, "unit": "kWh" },
-        { "direction": "output", "flow": "Cotton fabric, dyed", "amount": 1, "unit": "kg" },
-        { "direction": "output", "flow": "Wastewater, textile industry", "amount": 95, "unit": "L" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333339",
+            "type": "flow",
+            "shortDescription": "Cotton fabric, woven"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 1.02,
+          "resultingAmount": 1.02,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": "3333333c-3333-3333-3333-33333333333c",
+            "type": "flow",
+            "shortDescription": "Dyestuff, reactive"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.05,
+          "resultingAmount": 0.05,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333334",
+            "type": "flow",
+            "shortDescription": "Water, unspecified natural origin"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 100,
+          "resultingAmount": 100,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333336",
+            "type": "flow",
+            "shortDescription": "Electricity, high voltage"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.5,
+          "resultingAmount": 0.5,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 5,
+          "referenceToFlowDataSet": {
+            "refObjectId": "3333333a-3333-3333-3333-33333333333a",
+            "type": "flow",
+            "shortDescription": "Cotton fabric, dyed"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 6,
+          "referenceToFlowDataSet": {
+            "refObjectId": "3333333d-3333-3333-3333-33333333333d",
+            "type": "flow",
+            "shortDescription": "Wastewater, textile industry"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 95,
+          "resultingAmount": 95,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:45:00Z"
@@ -347,13 +1047,117 @@
     "name": "Sewing, cotton t-shirt {IN}| conventional| Cut-off, U",
     "description": "Cutting and sewing dyed cotton fabric into a finished t-shirt.",
     "payload": {
-      "unit": "piece",
-      "reference_amount": 1,
-      "source": "Textile Exchange Preferred Fiber & Materials Report",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Sewing, cotton t-shirt {IN}"
+              }
+            ],
+            "treatmentStandardsRoutes": [
+              {
+                "lang": "en",
+                "text": "conventional"
+              }
+            ],
+            "mixAndLocationTypes": [
+              {
+                "lang": "en",
+                "text": "Cut-off, U"
+              }
+            ]
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Cutting and sewing dyed cotton fabric into a finished t-shirt."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 3
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": "IN"
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": "66666666-6666-6666-6666-666666666669",
+          "type": "source",
+          "shortDescription": "Textile Exchange Preferred Fiber & Materials Report"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-01-05T10:46:00Z"
+      },
       "exchanges": [
-        { "direction": "input", "flow": "Cotton fabric, dyed", "amount": 0.2, "unit": "kg" },
-        { "direction": "input", "flow": "Electricity, high voltage", "amount": 0.1, "unit": "kWh" },
-        { "direction": "output", "flow": "Cotton t-shirt", "amount": 1, "unit": "piece" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": "3333333a-3333-3333-3333-33333333333a",
+            "type": "flow",
+            "shortDescription": "Cotton fabric, dyed"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.2,
+          "resultingAmount": 0.2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333336",
+            "type": "flow",
+            "shortDescription": "Electricity, high voltage"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.1,
+          "resultingAmount": 0.1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": "3333333b-3333-3333-3333-33333333333b",
+            "type": "flow",
+            "shortDescription": "Cotton t-shirt"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:46:00Z"
@@ -364,17 +1168,109 @@
     "name": "Transport, freight, lorry >32 metric ton, EURO6 {GLO}| market for| Cut-off, U",
     "description": "Global average heavy-duty road freight transport.",
     "payload": {
-      "unit": "tkm",
-      "reference_amount": 1,
-      "source": "ecoinvent 3.10",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Transport, freight, lorry >32 metric ton, EURO6 {GLO}"
+              }
+            ],
+            "treatmentStandardsRoutes": [
+              {
+                "lang": "en",
+                "text": "market for"
+              }
+            ],
+            "mixAndLocationTypes": [
+              {
+                "lang": "en",
+                "text": "Cut-off, U"
+              }
+            ]
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Global average heavy-duty road freight transport."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": "GLO"
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": "66666666-6666-6666-6666-666666666666",
+          "type": "source",
+          "shortDescription": "ecoinvent 3.10"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-01-05T10:47:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Transport, freight, lorry", "amount": 1, "unit": "tkm" },
-        { "direction": "output", "flow": "Carbon dioxide, fossil", "amount": 0.09, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": "3333333e-3333-3333-3333-33333333333e",
+            "type": "flow",
+            "shortDescription": "Transport, freight, lorry"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": "33333333-3333-3333-3333-333333333333",
+            "type": "flow",
+            "shortDescription": "Carbon dioxide, fossil"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.09,
+          "resultingAmount": 0.09,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-01-05T10:47:00Z"
   },
-
   {
     "id": "66666666-6666-6666-6666-666666666666",
     "type": "source",
@@ -401,7 +1297,7 @@
     "id": "66666666-6666-6666-6666-666666666668",
     "type": "source",
     "name": "ISO 14040:2006",
-    "description": "Environmental management — Life cycle assessment — Principles and framework.",
+    "description": "Environmental management \u2014 Life cycle assessment \u2014 Principles and framework.",
     "payload": {
       "publisher": "International Organization for Standardization",
       "year": 2006
@@ -419,7 +1315,6 @@
     },
     "created_at": "2026-01-05T10:53:00Z"
   },
-
   {
     "id": "77777777-7777-7777-7777-777777777777",
     "type": "contact",
@@ -464,7 +1359,6 @@
     },
     "created_at": "2026-01-05T11:03:00Z"
   },
-
   {
     "id": "11111111-1111-1111-1111-111111111111",
     "type": "model",
@@ -511,15 +1405,98 @@
   {
     "id": "70c84f27-61a8-5acd-b4c8-a962c67cbe6c",
     "type": "process",
-    "name": "Cotton Fiber: P1 — Fertilizer production",
+    "name": "Cotton Fiber: P1 \u2014 Fertilizer production",
     "description": "Process in the 'Cotton Fiber' LCA teaching example (1 kg of ginned cotton fiber, ready for spinning).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Cotton Fiber (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Cotton Fiber: P1 \u2014 Fertilizer production"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Cotton Fiber' LCA teaching example (1 kg of ginned cotton fiber, ready for spinning)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Cotton Fiber (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:00:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "N-fertilizer", "amount": 1, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 3.5, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "N-fertilizer"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 3.5,
+          "resultingAmount": 3.5,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:00:00Z"
@@ -527,19 +1504,146 @@
   {
     "id": "7fd5cea9-ef96-5b3e-8598-cbbfde33290e",
     "type": "process",
-    "name": "Cotton Fiber: P2 — Cotton farming",
+    "name": "Cotton Fiber: P2 \u2014 Cotton farming",
     "description": "Process in the 'Cotton Fiber' LCA teaching example (1 kg of ginned cotton fiber, ready for spinning).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Cotton Fiber (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Cotton Fiber: P2 \u2014 Cotton farming"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Cotton Fiber' LCA teaching example (1 kg of ginned cotton fiber, ready for spinning)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Cotton Fiber (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:00:07Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Cotton fiber", "amount": 1, "unit": "kg" },
-        { "direction": "input", "flow": "N-fertilizer", "amount": 0.2, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.8, "unit": "kg" },
-        { "direction": "output", "flow": "Nitrous oxide", "amount": 0.015, "unit": "kg" },
-        { "direction": "output", "flow": "Ammonia", "amount": 0.01, "unit": "kg" },
-        { "direction": "input", "flow": "Water", "amount": 8000, "unit": "L" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Cotton fiber"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "N-fertilizer"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.2,
+          "resultingAmount": 0.2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.8,
+          "resultingAmount": 0.8,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Nitrous oxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.015,
+          "resultingAmount": 0.015,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 5,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Ammonia"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.01,
+          "resultingAmount": 0.01,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 6,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Water"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 8000,
+          "resultingAmount": 8000,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:00:07Z"
@@ -550,16 +1654,143 @@
     "name": "Cotton Fiber (bafu-linked): Cotton farming",
     "description": "Process in the 'Cotton Fiber (bafu-linked)' LCA teaching example (1 kg of ginned cotton fiber, ready for spinning).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Cotton Fiber (bafu-linked) (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Cotton Fiber (bafu-linked): Cotton farming"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Cotton Fiber (bafu-linked)' LCA teaching example (1 kg of ginned cotton fiber, ready for spinning)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Cotton Fiber (bafu-linked) (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:01:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Cotton fiber", "amount": 1, "unit": "kg" },
-        { "direction": "input", "flow": "Average mineral fertiliser, as N, at regional storehouse {RER}", "amount": 0.2, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.8, "unit": "kg" },
-        { "direction": "output", "flow": "Nitrous oxide", "amount": 0.015, "unit": "kg" },
-        { "direction": "output", "flow": "Ammonia", "amount": 0.01, "unit": "kg" },
-        { "direction": "input", "flow": "Water", "amount": 8000, "unit": "L" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Cotton fiber"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Average mineral fertiliser, as N, at regional storehouse {RER}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.2,
+          "resultingAmount": 0.2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.8,
+          "resultingAmount": 0.8,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Nitrous oxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.015,
+          "resultingAmount": 0.015,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 5,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Ammonia"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.01,
+          "resultingAmount": 0.01,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 6,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Water"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 8000,
+          "resultingAmount": 8000,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:01:00Z"
@@ -567,16 +1798,110 @@
   {
     "id": "5903b384-c4fc-5163-aefb-4cdf2a8f2554",
     "type": "process",
-    "name": "Jacket: P0 — Raw material extraction",
+    "name": "Jacket: P0 \u2014 Raw material extraction",
     "description": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Jacket (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Jacket: P0 \u2014 Raw material extraction"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Jacket (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:02:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Raw fiber material", "amount": 1, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 1.8, "unit": "kg" },
-        { "direction": "output", "flow": "Methane", "amount": 0.02, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Raw fiber material"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1.8,
+          "resultingAmount": 1.8,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Methane"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.02,
+          "resultingAmount": 0.02,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:02:00Z"
@@ -584,17 +1909,122 @@
   {
     "id": "5b4436a5-b529-579e-82a7-242c4840d43f",
     "type": "process",
-    "name": "Jacket: P1 — Spinning",
+    "name": "Jacket: P1 \u2014 Spinning",
     "description": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Jacket (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Jacket: P1 \u2014 Spinning"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Jacket (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:02:07Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Fiber", "amount": 1, "unit": "kg" },
-        { "direction": "input", "flow": "Raw fiber material", "amount": 1.2, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 1.2, "unit": "kg" },
-        { "direction": "output", "flow": "Methane", "amount": 0.01, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Fiber"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Raw fiber material"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 1.2,
+          "resultingAmount": 1.2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1.2,
+          "resultingAmount": 1.2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Methane"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.01,
+          "resultingAmount": 0.01,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:02:07Z"
@@ -602,17 +2032,122 @@
   {
     "id": "701038ee-7163-56e8-8b94-96be52334646",
     "type": "process",
-    "name": "Jacket: P2 — Fabric weaving",
+    "name": "Jacket: P2 \u2014 Fabric weaving",
     "description": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Jacket (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Jacket: P2 \u2014 Fabric weaving"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Jacket (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:02:14Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Fabric", "amount": 1, "unit": "kg" },
-        { "direction": "input", "flow": "Fiber", "amount": 1.1, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 1.5, "unit": "kg" },
-        { "direction": "output", "flow": "Nitrogen oxides", "amount": 0.01, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Fabric"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Fiber"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 1.1,
+          "resultingAmount": 1.1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1.5,
+          "resultingAmount": 1.5,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Nitrogen oxides"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.01,
+          "resultingAmount": 0.01,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:02:14Z"
@@ -620,16 +2155,110 @@
   {
     "id": "1d36391e-912d-569a-9a16-e7d718cdc515",
     "type": "process",
-    "name": "Jacket: P3 — Zipper production",
+    "name": "Jacket: P3 \u2014 Zipper production",
     "description": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale).",
     "payload": {
-      "unit": "unit",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Jacket (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Jacket: P3 \u2014 Zipper production"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Jacket (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:02:21Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Zipper", "amount": 1, "unit": "unit" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.4, "unit": "kg" },
-        { "direction": "output", "flow": "Nitrogen oxides", "amount": 0.005, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Zipper"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.4,
+          "resultingAmount": 0.4,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Nitrogen oxides"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.005,
+          "resultingAmount": 0.005,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:02:21Z"
@@ -637,17 +2266,122 @@
   {
     "id": "91d912f0-17ce-5e34-abae-70eb7d3737a3",
     "type": "process",
-    "name": "Jacket: P4 — Jacket assembly",
+    "name": "Jacket: P4 \u2014 Jacket assembly",
     "description": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale).",
     "payload": {
-      "unit": "unit",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Jacket (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Jacket: P4 \u2014 Jacket assembly"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Jacket' LCA teaching example (1 jacket, ready for sale)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Jacket (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:02:28Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Jacket", "amount": 1, "unit": "unit" },
-        { "direction": "input", "flow": "Fabric", "amount": 0.6, "unit": "kg" },
-        { "direction": "input", "flow": "Zipper", "amount": 1, "unit": "unit" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.8, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Jacket"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Fabric"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.6,
+          "resultingAmount": 0.6,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Zipper"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.8,
+          "resultingAmount": 0.8,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:02:28Z"
@@ -658,13 +2392,107 @@
     "name": "Mock Plastic Broom: Mock plastic broom assembly",
     "description": "Process in the 'Mock Plastic Broom' LCA teaching example (1 mock plastic broom).",
     "payload": {
-      "unit": "unit",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Mock Plastic Broom (EF v3.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Mock Plastic Broom: Mock plastic broom assembly"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Mock Plastic Broom' LCA teaching example (1 mock plastic broom)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Mock Plastic Broom (EF v3.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:03:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Mock plastic broom", "amount": 1, "unit": "unit" },
-        { "direction": "input", "flow": "Mock polypropylene granulate, at plant {MOCK}", "amount": 0.52, "unit": "kilogram" },
-        { "direction": "input", "flow": "Mock freight transport, small truck {MOCK}", "amount": 0.1055, "unit": "ton kilometer" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Mock plastic broom"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Mock polypropylene granulate, at plant {MOCK}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.52,
+          "resultingAmount": 0.52,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Mock freight transport, small truck {MOCK}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.1055,
+          "resultingAmount": 0.1055,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:03:00Z"
@@ -675,13 +2503,107 @@
     "name": "Simple Mock Plastic Broom: Simple mock plastic broom assembly",
     "description": "Process in the 'Simple Mock Plastic Broom' LCA teaching example (1 simple mock plastic broom).",
     "payload": {
-      "unit": "unit",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Simple Mock Plastic Broom (EF v3.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Simple Mock Plastic Broom: Simple mock plastic broom assembly"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Simple Mock Plastic Broom' LCA teaching example (1 simple mock plastic broom)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Simple Mock Plastic Broom (EF v3.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:04:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Simple mock plastic broom", "amount": 1, "unit": "unit" },
-        { "direction": "input", "flow": "Mock polypropylene granulate, at plant {MOCK}", "amount": 0.52, "unit": "kilogram" },
-        { "direction": "input", "flow": "Mock freight transport, small truck, direct emissions only {MOCK}", "amount": 0.1055, "unit": "ton kilometer" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Simple mock plastic broom"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Mock polypropylene granulate, at plant {MOCK}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.52,
+          "resultingAmount": 0.52,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Mock freight transport, small truck, direct emissions only {MOCK}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.1055,
+          "resultingAmount": 0.1055,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:04:00Z"
@@ -692,14 +2614,119 @@
     "name": "Plastic Broom (bafu-linked): Plastic broom assembly",
     "description": "Process in the 'Plastic Broom (bafu-linked)' LCA teaching example (1 plastic broom).",
     "payload": {
-      "unit": "unit",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Plastic Broom (bafu-linked) (EF v3.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Plastic Broom (bafu-linked): Plastic broom assembly"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Plastic Broom (bafu-linked)' LCA teaching example (1 plastic broom)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Plastic Broom (bafu-linked) (EF v3.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:05:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Plastic broom", "amount": 1, "unit": "unit" },
-        { "direction": "input", "flow": "Polylactide, granulate, at plant {GLO}", "amount": 0.52, "unit": "kg" },
-        { "direction": "input", "flow": "Nylon 6, at plant {RER}", "amount": 0.03, "unit": "kg" },
-        { "direction": "input", "flow": "Transport, freight, lorry, 16t-32t gross weight, fleet average {RER}", "amount": 0.1055, "unit": "tkm" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Plastic broom"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Polylactide, granulate, at plant {GLO}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.52,
+          "resultingAmount": 0.52,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Nylon 6, at plant {RER}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.03,
+          "resultingAmount": 0.03,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Transport, freight, lorry, 16t-32t gross weight, fleet average {RER}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.1055,
+          "resultingAmount": 0.1055,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:05:00Z"
@@ -707,16 +2734,110 @@
   {
     "id": "26007961-284b-51a0-8d07-4e3e86f6bb3a",
     "type": "process",
-    "name": "Polyester T-shirt: P1 — Oil extraction",
+    "name": "Polyester T-shirt: P1 \u2014 Oil extraction",
     "description": "Process in the 'Polyester T-shirt' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric)).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Polyester T-shirt (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Polyester T-shirt: P1 \u2014 Oil extraction"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Polyester T-shirt' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric))."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Polyester T-shirt (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:06:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Crude oil", "amount": 1, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.2, "unit": "kg" },
-        { "direction": "output", "flow": "Methane", "amount": 0.05, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Crude oil"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.2,
+          "resultingAmount": 0.2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Methane"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.05,
+          "resultingAmount": 0.05,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:06:00Z"
@@ -724,16 +2845,110 @@
   {
     "id": "1844a019-434a-5a9c-a8a9-bd43132b9d41",
     "type": "process",
-    "name": "Polyester T-shirt: P2 — Polyester fiber production",
+    "name": "Polyester T-shirt: P2 \u2014 Polyester fiber production",
     "description": "Process in the 'Polyester T-shirt' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric)).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Polyester T-shirt (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Polyester T-shirt: P2 \u2014 Polyester fiber production"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Polyester T-shirt' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric))."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Polyester T-shirt (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:06:07Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Polyester fiber", "amount": 1, "unit": "kg" },
-        { "direction": "input", "flow": "Crude oil", "amount": 1.5, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 5.5, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Polyester fiber"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Crude oil"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 1.5,
+          "resultingAmount": 1.5,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 5.5,
+          "resultingAmount": 5.5,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:06:07Z"
@@ -741,16 +2956,110 @@
   {
     "id": "2add549e-161e-5c18-a946-64d053ed3d9d",
     "type": "process",
-    "name": "Polyester T-shirt: P3 — T-shirt assembly",
+    "name": "Polyester T-shirt: P3 \u2014 T-shirt assembly",
     "description": "Process in the 'Polyester T-shirt' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric)).",
     "payload": {
-      "unit": "unit",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Polyester T-shirt (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Polyester T-shirt: P3 \u2014 T-shirt assembly"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Polyester T-shirt' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric))."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Polyester T-shirt (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:06:14Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "T-shirt", "amount": 1, "unit": "unit" },
-        { "direction": "input", "flow": "Polyester fiber", "amount": 0.2, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 1, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "T-shirt"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Polyester fiber"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.2,
+          "resultingAmount": 0.2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:06:14Z"
@@ -761,14 +3070,119 @@
     "name": "Polyester T-shirt (bafu-linked): T-shirt assembly",
     "description": "Process in the 'Polyester T-shirt (bafu-linked)' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric)).",
     "payload": {
-      "unit": "unit",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Polyester T-shirt (bafu-linked) (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Polyester T-shirt (bafu-linked): T-shirt assembly"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Polyester T-shirt (bafu-linked)' LCA teaching example (1 polyester T-shirt, ready for sale (approximately 200 g of fabric))."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Polyester T-shirt (bafu-linked) (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:07:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "T-shirt", "amount": 1, "unit": "unit" },
-        { "direction": "input", "flow": "Polyethylene terephthalate, granulate, bottle grade, at plant {RER}", "amount": 0.2, "unit": "kg" },
-        { "direction": "input", "flow": "Fleece production, polyethylene terephthalate {RER}", "amount": 0.2, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 1, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "T-shirt"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Polyethylene terephthalate, granulate, bottle grade, at plant {RER}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.2,
+          "resultingAmount": 0.2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Fleece production, polyethylene terephthalate {RER}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 0.2,
+          "resultingAmount": 0.2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:07:00Z"
@@ -776,16 +3190,110 @@
   {
     "id": "fd703284-afb0-5f70-9923-661b4e70fbcb",
     "type": "process",
-    "name": "Wool Yarn: P1 — Sheep farming",
+    "name": "Wool Yarn: P1 \u2014 Sheep farming",
     "description": "Process in the 'Wool Yarn' LCA teaching example (1 kg of wool yarn, ready for knitting or weaving).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Wool Yarn (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Wool Yarn: P1 \u2014 Sheep farming"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Wool Yarn' LCA teaching example (1 kg of wool yarn, ready for knitting or weaving)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Wool Yarn (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:08:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Raw wool", "amount": 1, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 0.5, "unit": "kg" },
-        { "direction": "output", "flow": "Methane", "amount": 0.4, "unit": "kg" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Raw wool"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.5,
+          "resultingAmount": 0.5,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Methane"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 0.4,
+          "resultingAmount": 0.4,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:08:00Z"
@@ -793,17 +3301,122 @@
   {
     "id": "52f1d9ae-d839-52c3-b31d-52f5688d59e6",
     "type": "process",
-    "name": "Wool Yarn: P2 — Wool yarn production",
+    "name": "Wool Yarn: P2 \u2014 Wool yarn production",
     "description": "Process in the 'Wool Yarn' LCA teaching example (1 kg of wool yarn, ready for knitting or weaving).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Wool Yarn (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Wool Yarn: P2 \u2014 Wool yarn production"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Wool Yarn' LCA teaching example (1 kg of wool yarn, ready for knitting or weaving)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Wool Yarn (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:08:07Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Wool yarn", "amount": 1, "unit": "kg" },
-        { "direction": "input", "flow": "Raw wool", "amount": 1.1, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 2, "unit": "kg" },
-        { "direction": "input", "flow": "Water", "amount": 30, "unit": "L" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Wool yarn"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Raw wool"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 1.1,
+          "resultingAmount": 1.1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 2,
+          "resultingAmount": 2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Water"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 30,
+          "resultingAmount": 30,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:08:07Z"
@@ -814,14 +3427,119 @@
     "name": "Wool Yarn (bafu-linked): Wool yarn production",
     "description": "Process in the 'Wool Yarn (bafu-linked)' LCA teaching example (1 kg of wool yarn, ready for knitting or weaving).",
     "payload": {
-      "unit": "kg",
-      "reference_amount": 1,
-      "source": "lca-mcp.mathplosion.com product graph — Wool Yarn (bafu-linked) (TRACI v2.1)",
+      "processInformation": {
+        "dataSetInformation": {
+          "name": {
+            "baseName": [
+              {
+                "lang": "en",
+                "text": "Wool Yarn (bafu-linked): Wool yarn production"
+              }
+            ],
+            "treatmentStandardsRoutes": [],
+            "mixAndLocationTypes": []
+          },
+          "classification": [],
+          "generalComment": [
+            {
+              "lang": "en",
+              "text": "Process in the 'Wool Yarn (bafu-linked)' LCA teaching example (1 kg of wool yarn, ready for knitting or weaving)."
+            }
+          ]
+        },
+        "quantitativeReference": {
+          "referenceToReferenceFlow": 1
+        },
+        "time": {
+          "referenceYear": null
+        },
+        "geography": {
+          "location": ""
+        }
+      },
+      "modellingAndValidation": {
+        "typeOfDataSet": "Unit process, single operation",
+        "dataCutOffAndCompletenessPrinciples": [],
+        "referenceToDataSource": {
+          "refObjectId": null,
+          "type": "source",
+          "shortDescription": "lca-mcp.mathplosion.com product graph \u2014 Wool Yarn (bafu-linked) (TRACI v2.1)"
+        },
+        "annualSupplyOrProductionVolume": [],
+        "complianceDeclarations": []
+      },
+      "administrativeInformation": {
+        "referenceToCommissioner": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "intendedApplications": [],
+        "referenceToPersonOrEntityGeneratingTheDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "dataSetVersion": "01.01.000",
+        "permanentDataSetURI": "",
+        "referenceToOwnershipOfDataSet": {
+          "refObjectId": null,
+          "type": "contact",
+          "shortDescription": ""
+        },
+        "copyright": false,
+        "licenseType": "",
+        "timeStamp": "2026-09-10T09:09:00Z"
+      },
       "exchanges": [
-        { "direction": "output", "flow": "Wool yarn", "amount": 1, "unit": "kg" },
-        { "direction": "input", "flow": "xx Wool, sheep, at farm {US}", "amount": 1.1, "unit": "kg" },
-        { "direction": "output", "flow": "Carbon dioxide", "amount": 2, "unit": "kg" },
-        { "direction": "input", "flow": "Water", "amount": 30, "unit": "L" }
+        {
+          "dataSetInternalID": 1,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Wool yarn"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 1,
+          "resultingAmount": 1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 2,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "xx Wool, sheep, at farm {US}"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 1.1,
+          "resultingAmount": 1.1,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 3,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Carbon dioxide"
+          },
+          "exchangeDirection": "Output",
+          "meanAmount": 2,
+          "resultingAmount": 2,
+          "generalComment": []
+        },
+        {
+          "dataSetInternalID": 4,
+          "referenceToFlowDataSet": {
+            "refObjectId": null,
+            "type": "flow",
+            "shortDescription": "Water"
+          },
+          "exchangeDirection": "Input",
+          "meanAmount": 30,
+          "resultingAmount": 30,
+          "generalComment": []
+        }
       ]
     },
     "created_at": "2026-09-10T09:09:00Z"
