@@ -65,26 +65,12 @@ export function DatasetList() {
     <Card>
       <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <CardTitle>{typeInfo.label}</CardTitle>
-        <div className="flex items-center gap-2 self-start sm:self-auto">
-          {typeInfo.type === "model" && (
-            <Button asChild size="sm" variant="outline">
-              <a
-                href="https://github.com/calvinw/product-graph-editor"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="size-4" />
-                Product Graph Editor
-              </a>
-            </Button>
-          )}
-          <Button asChild size="sm">
-            <Link to={`/open-data/${typeInfo.type}/new`}>
-              <Plus className="size-4" />
-              Add
-            </Link>
-          </Button>
-        </div>
+        <Button asChild size="sm" className="self-start sm:self-auto">
+          <Link to={`/open-data/${typeInfo.type}/new`}>
+            <Plus className="size-4" />
+            Add
+          </Link>
+        </Button>
       </CardHeader>
       <CardContent>
         <Table>
@@ -121,6 +107,22 @@ export function DatasetList() {
                         <Eye className="size-4" />
                       </Link>
                     </Button>
+                    {typeInfo.type === "model" && (
+                      <Button
+                        asChild
+                        variant="ghost"
+                        size="icon-sm"
+                        aria-label={`Open ${d.name} in Product Graph Editor`}
+                      >
+                        <a
+                          href="https://calvinw.github.io/product-graph-editor/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="size-4" />
+                        </a>
+                      </Button>
+                    )}
                     {session && (
                       <>
                         <Button
