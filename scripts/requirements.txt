@@ -1,0 +1,9 @@
+# Python dependencies for scripts/export_ecospold.py and scripts/export_tidas.py
+#
+# Install with:
+#   pip install -r scripts/requirements.txt
+#
+# export_ecospold.py itself needs nothing beyond the stdlib; this file only
+# covers export_tidas.py's use of the official TianGong TIDAS conversion/
+# validation tool (https://pypi.org/project/tidas-tools/).
+tidas-tools>=0.0.43,<0.1
