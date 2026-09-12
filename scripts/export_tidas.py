@@ -28,6 +28,7 @@ Output per target, under --out-dir (default: scripts/tidas-export/<slug>/):
 Exits non-zero if either step reports errors, or if validation is not ok.
 """
 import argparse
+import glob
 import json
 import os
 import subprocess
@@ -48,6 +49,41 @@ def check_tidas_tools():
             "tidas-tools is not installed. Run:\n"
             "  pip install -r scripts/requirements.txt"
         )
+
+
+def dataset_version(doc):
+    """Extract common:dataSetVersion from a TIDAS record, whatever its root key is."""
+    root = next(iter(doc.values()), {})
+    admin = root.get("administrativeInformation", {})
+    version = admin.get("publicationAndOwnership", {}).get("common:dataSetVersion")
+    return version or "00.00.001"
+
+
+def apply_tiangong_filename_convention(tidas_dir, label):
+    """
+    Rename every '<category>/<uuid>.json' to '<category>/<uuid>_<version>.json'.
+
+    The TianGong platform's own zip importer (tiangong-lca/worker,
+    crates/solver-worker/src/package_execution.rs, parse_root_from_package_file_path)
+    requires this exact filename shape — it rsplits on '_' to recover the id and
+    version, and silently skips any file that doesn't match, which is why a package
+    produced by plain `tidas-tools` (files named just '<uuid>.json') gets rejected
+    with "the package does not contain any supported TIDAS datasets" even though it
+    passes tidas-tools' own validator.
+    """
+    renamed = 0
+    for path in glob.glob(os.path.join(tidas_dir, "*", "*.json")):
+        fname = os.path.basename(path)
+        stem = fname[:-len(".json")]
+        if "_" in stem:
+            continue  # already has a version suffix
+        with open(path, encoding="utf-8") as f:
+            doc = json.load(f)
+        version = dataset_version(doc)
+        new_path = os.path.join(os.path.dirname(path), f"{stem}_{version}.json")
+        os.rename(path, new_path)
+        renamed += 1
+    print(f"[{label}] renamed {renamed} file(s) to the <uuid>_<version>.json convention TianGong expects")
 
 
 def run_module(module, args):
@@ -113,6 +149,8 @@ def export_and_convert(exporter, model_rows, target_dir, label):
         print(f"[{label}] validation failed, see {validation_report}", file=sys.stderr)
         return False
     print(f"[{label}] validated ok: {validation['summary']}")
+
+    apply_tiangong_filename_convention(tidas_dir, label)
 
     zip_path = os.path.join(target_dir, "tidas.zip")
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
