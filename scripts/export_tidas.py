@@ -26,6 +26,23 @@ Output per target, under --out-dir (default: scripts/tidas-export/<slug>/):
     validation-report.json     - tidas-validate's report (ok/errors/warnings)
 
 Exits non-zero if either step reports errors, or if validation is not ok.
+
+By default the package excludes contacts/sources/unitgroups/flowproperties.
+These are not derived from our product-graph data at all — tidas-tools'
+EcoSpold2 adapter always emits the same small fixed set of generic
+placeholder records for these 4 categories regardless of input, so they are
+the ones that keep colliding with whatever a TianGong account already has
+(seen in practice: 2 of these caused a whole-package USER_DATA_CONFLICT
+rejection with 0 records imported, even though 58 other records were fine).
+flows/processes keep referencing them by the same id, which still resolves
+correctly against the copy TianGong already has. Pass --include-reference-data
+to include them anyway (e.g. importing into a brand-new, totally empty account).
+
+If TianGong still rejects a package over conflicts, download its import
+report from the Task Center and run:
+    python3 scripts/export_tidas.py --repair-from-report path/to/report.json --out-dir <same --out-dir as before>
+This strips every entry listed under filtered_open_data / user_conflicts from
+<out-dir>/tidas and rewrites tidas.zip — no manual file-hunting required.
 """
 import argparse
 import glob
@@ -92,7 +109,62 @@ def run_module(module, args):
     return result
 
 
-def export_and_convert(exporter, model_rows, target_dir, label):
+# Categories tidas-tools' EcoSpold2 adapter always fills with the same fixed
+# set of generic placeholder records, regardless of input content — the
+# recurring source of USER_DATA_CONFLICT / filtered_open_data rejections.
+REFERENCE_DATA_CATEGORIES = {"contacts", "sources", "unitgroups", "flowproperties"}
+
+
+def zip_tidas_dir(tidas_dir, zip_path, label):
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        count = 0
+        for root_dir, _dirs, files in os.walk(tidas_dir):
+            for fname in files:
+                full = os.path.join(root_dir, fname)
+                arc = os.path.relpath(full, tidas_dir)
+                zf.write(full, arcname=arc)
+                count += 1
+    print(f"[{label}] wrote {zip_path} ({count} files, ready to upload)")
+
+
+def exclude_reference_data(tidas_dir, label):
+    removed = 0
+    for category in REFERENCE_DATA_CATEGORIES:
+        for path in glob.glob(os.path.join(tidas_dir, category, "*.json")):
+            os.remove(path)
+            removed += 1
+    if removed:
+        print(f"[{label}] excluded {removed} generic reference-data record(s) "
+              f"({', '.join(sorted(REFERENCE_DATA_CATEGORIES))}) — pass --include-reference-data to keep them")
+
+
+def repair_from_report(target_dir, report_path, label):
+    tidas_dir = os.path.join(target_dir, "tidas")
+    if not os.path.isdir(tidas_dir):
+        sys.exit(f"No prepared package found at {tidas_dir}. Run an export into this --out-dir first.")
+
+    with open(report_path, encoding="utf-8") as f:
+        doc = json.load(f)
+    report = doc.get("report", doc)  # accept either the raw report or the full downloaded envelope
+
+    to_remove = [*report.get("filtered_open_data", []), *report.get("user_conflicts", [])]
+    if not to_remove:
+        sys.exit("The report lists no filtered_open_data or user_conflicts entries — nothing to repair.")
+
+    removed = 0
+    for item in to_remove:
+        matches = glob.glob(os.path.join(tidas_dir, item["table"], f"{item['id']}_*.json"))
+        for path in matches:
+            os.remove(path)
+            removed += 1
+    print(f"[{label}] removed {removed} of {len(to_remove)} reported conflicting/filtered record(s)")
+
+    zip_path = os.path.join(target_dir, "tidas.zip")
+    zip_tidas_dir(tidas_dir, zip_path, label)
+    return True
+
+
+def export_and_convert(exporter, model_rows, target_dir, label, include_reference_data=False):
     os.makedirs(target_dir, exist_ok=True)
     ecospold_dir = os.path.join(target_dir, "ecospold")
     os.makedirs(ecospold_dir, exist_ok=True)
@@ -150,16 +222,13 @@ def export_and_convert(exporter, model_rows, target_dir, label):
         return False
     print(f"[{label}] validated ok: {validation['summary']}")
 
+    if not include_reference_data:
+        exclude_reference_data(tidas_dir, label)
+
     apply_tiangong_filename_convention(tidas_dir, label)
 
     zip_path = os.path.join(target_dir, "tidas.zip")
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
-        for root_dir, _dirs, files in os.walk(tidas_dir):
-            for fname in files:
-                full = os.path.join(root_dir, fname)
-                arc = os.path.relpath(full, tidas_dir)
-                zf.write(full, arcname=arc)
-    print(f"[{label}] wrote {zip_path} (ready to upload)")
+    zip_tidas_dir(tidas_dir, zip_path, label)
     return True
 
 
@@ -169,7 +238,21 @@ def main():
     parser.add_argument("--list", action="store_true", help="List available model names and exit")
     parser.add_argument("--all", action="store_true", help="Export every model into one combined TIDAS package")
     parser.add_argument("--out-dir", default=None, help="Directory to write output into (default: scripts/tidas-export/<slug>)")
+    parser.add_argument("--include-reference-data", action="store_true",
+                         help="Keep contacts/sources/unitgroups/flowproperties in the package "
+                              "(default: excluded — see the module docstring for why)")
+    parser.add_argument("--repair-from-report", metavar="REPORT_JSON",
+                         help="Skip the export pipeline; strip the filtered_open_data/user_conflicts "
+                              "entries listed in a TianGong-downloaded import report from an existing "
+                              "--out-dir's prepared package, and rewrite tidas.zip")
     args = parser.parse_args()
+
+    if args.repair_from_report:
+        if not args.out_dir:
+            sys.exit("--repair-from-report requires --out-dir pointing at the previous export's output directory")
+        label = os.path.basename(os.path.normpath(args.out_dir))
+        ok = repair_from_report(args.out_dir, args.repair_from_report, label)
+        sys.exit(0 if ok else 1)
 
     check_tidas_tools()
 
@@ -201,7 +284,7 @@ def main():
         model_rows = [model]
 
     out_dir = args.out_dir or os.path.join(SCRIPT_DIR, "tidas-export", label)
-    ok = export_and_convert(exporter, model_rows, out_dir, label)
+    ok = export_and_convert(exporter, model_rows, out_dir, label, include_reference_data=args.include_reference_data)
     sys.exit(0 if ok else 1)
 
 
