@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import { Star } from "lucide-react"
+import { CircleCheck, CircleX } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -11,18 +11,48 @@ import {
 } from "@/components/ui/table"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { getDataset, type Dataset } from "@/lib/datasets"
-import { toFlowDataSet } from "@/lib/ilcd"
+import { getDataset, listDatasets, type Dataset } from "@/lib/datasets"
+import { toFlowDataSet, toFlowPropertyDataSet, toUnitGroupDataSet } from "@/lib/ilcd"
 import { LangRow } from "@/components/ilcd/lang-row"
+
+function referenceUnitFor(
+  flowPropertyId: string | null,
+  flowPropertiesById: Map<string, Dataset>,
+  unitGroupsById: Map<string, Dataset>,
+): string {
+  const propertyDataset = flowPropertyId ? flowPropertiesById.get(flowPropertyId) : undefined
+  if (!propertyDataset) return "-"
+  const property = toFlowPropertyDataSet(propertyDataset.payload)
+  const unitGroupId =
+    property.flowPropertiesInformation.quantitativeReference.referenceToReferenceUnitGroup
+      .refObjectId
+  const unitGroupDataset = unitGroupId ? unitGroupsById.get(unitGroupId) : undefined
+  if (!unitGroupDataset) return "-"
+  const unitGroup = toUnitGroupDataSet(unitGroupDataset.payload)
+  const refUnitId = unitGroup.unitGroupInformation.quantitativeReference.referenceToReferenceUnit
+  const unit = unitGroup.units.find((u) => u.dataSetInternalID === refUnitId)
+  return unit ? `${unitGroupDataset.name} (${unit.name})` : "-"
+}
 
 export function FlowDetail() {
   const { id } = useParams<{ id: string }>()
   const [dataset, setDataset] = useState<Dataset | null | undefined>(undefined)
+  const [flowPropertiesById, setFlowPropertiesById] = useState<Map<string, Dataset>>(new Map())
+  const [unitGroupsById, setUnitGroupsById] = useState<Map<string, Dataset>>(new Map())
 
   useEffect(() => {
     if (!id) return
     getDataset(id).then((d) => setDataset(d ?? null))
   }, [id])
+
+  useEffect(() => {
+    listDatasets("flow_property").then((rows) =>
+      setFlowPropertiesById(new Map(rows.map((r) => [r.id, r]))),
+    )
+    listDatasets("unit_group").then((rows) =>
+      setUnitGroupsById(new Map(rows.map((r) => [r.id, r]))),
+    )
+  }, [])
 
   if (dataset === undefined) return null
   if (dataset === null) {
@@ -49,6 +79,7 @@ export function FlowDetail() {
               <TabsTrigger value="info">Flow information</TabsTrigger>
               <TabsTrigger value="model">Modelling and validation</TabsTrigger>
               <TabsTrigger value="admin">Administrative information</TabsTrigger>
+              <TabsTrigger value="property">Flow property</TabsTrigger>
             </TabsList>
 
             <TabsContent value="info" className="flex flex-col gap-4 pt-4">
@@ -94,34 +125,6 @@ export function FlowDetail() {
                   <p className="text-muted-foreground text-sm">{model.typeOfDataSet}</p>
                 </div>
               )}
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead />
-                    <TableHead>Flow property</TableHead>
-                    <TableHead>Conversion factor</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {ds.flowProperties.map((p) => (
-                    <TableRow key={p.dataSetInternalID}>
-                      <TableCell>
-                        {info.quantitativeReference.referenceToReferenceFlowProperty ===
-                          p.dataSetInternalID && <Star className="fill-primary text-primary size-4" />}
-                      </TableCell>
-                      <TableCell>{p.referenceToFlowPropertyDataSet.shortDescription}</TableCell>
-                      <TableCell>{p.meanValue ?? ""}</TableCell>
-                    </TableRow>
-                  ))}
-                  {ds.flowProperties.length === 0 && (
-                    <TableRow>
-                      <TableCell colSpan={3} className="text-muted-foreground">
-                        No flow properties yet.
-                      </TableCell>
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
               {model.complianceDeclarations.length > 0 && (
                 <Table>
                   <TableHeader>
@@ -147,6 +150,66 @@ export function FlowDetail() {
                 <p className="text-sm font-medium">Data set version</p>
                 <p className="text-muted-foreground text-sm">{admin.dataSetVersion}</p>
               </div>
+            </TabsContent>
+
+            <TabsContent value="property" className="pt-4">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Index</TableHead>
+                    <TableHead>Flow property</TableHead>
+                    <TableHead>Mean value (of flow property)</TableHead>
+                    <TableHead>Reference unit</TableHead>
+                    <TableHead>Quantitative reference</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {ds.flowProperties.map((p) => {
+                    const isReference =
+                      info.quantitativeReference.referenceToReferenceFlowProperty ===
+                      p.dataSetInternalID
+                    return (
+                      <TableRow key={p.dataSetInternalID}>
+                        <TableCell>{p.dataSetInternalID}</TableCell>
+                        <TableCell>
+                          {p.referenceToFlowPropertyDataSet.refObjectId ? (
+                            <Link
+                              to={`/open-data/flow_property/${p.referenceToFlowPropertyDataSet.refObjectId}`}
+                              className="text-primary hover:underline"
+                            >
+                              {p.referenceToFlowPropertyDataSet.shortDescription}
+                            </Link>
+                          ) : (
+                            p.referenceToFlowPropertyDataSet.shortDescription || "-"
+                          )}
+                        </TableCell>
+                        <TableCell>{p.meanValue ?? ""}</TableCell>
+                        <TableCell>
+                          {referenceUnitFor(
+                            p.referenceToFlowPropertyDataSet.refObjectId,
+                            flowPropertiesById,
+                            unitGroupsById,
+                          )}
+                        </TableCell>
+                        <TableCell>
+                          {isReference ? (
+                            <CircleCheck className="size-4 text-primary" />
+                          ) : (
+                            <CircleX className="text-muted-foreground size-4" />
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    )
+                  })}
+                  {ds.flowProperties.length === 0 && (
+                    <TableRow>
+                      <TableCell colSpan={5} className="text-muted-foreground">
+                        No flow properties yet.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
             </TabsContent>
           </Tabs>
         </CardContent>

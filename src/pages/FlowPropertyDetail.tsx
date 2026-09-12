@@ -45,7 +45,7 @@ export function FlowPropertyDetail() {
         <CardContent>
           <Tabs defaultValue="info">
             <TabsList className="flex-wrap">
-              <TabsTrigger value="info">Flow properties information</TabsTrigger>
+              <TabsTrigger value="info">Flow property information</TabsTrigger>
               <TabsTrigger value="model">Modelling and validation</TabsTrigger>
               <TabsTrigger value="admin">Administrative information</TabsTrigger>
             </TabsList>
