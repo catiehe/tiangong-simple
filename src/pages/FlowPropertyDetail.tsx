@@ -10,18 +10,25 @@ import {
 } from "@/components/ui/table"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { getDataset, type Dataset } from "@/lib/datasets"
-import { toFlowPropertyDataSet } from "@/lib/ilcd"
+import { getDataset, listDatasets, type Dataset } from "@/lib/datasets"
+import { toFlowPropertyDataSet, toUnitGroupDataSet } from "@/lib/ilcd"
 import { LangRow } from "@/components/ilcd/lang-row"
 
 export function FlowPropertyDetail() {
   const { id } = useParams<{ id: string }>()
   const [dataset, setDataset] = useState<Dataset | null | undefined>(undefined)
+  const [unitGroupsById, setUnitGroupsById] = useState<Map<string, Dataset>>(new Map())
 
   useEffect(() => {
     if (!id) return
     getDataset(id).then((d) => setDataset(d ?? null))
   }, [id])
+
+  useEffect(() => {
+    listDatasets("unit_group").then((rows) =>
+      setUnitGroupsById(new Map(rows.map((r) => [r.id, r]))),
+    )
+  }, [])
 
   if (dataset === undefined) return null
   if (dataset === null) {
@@ -32,6 +39,12 @@ export function FlowPropertyDetail() {
   const info = ds.flowPropertiesInformation
   const model = ds.modellingAndValidation
   const admin = ds.administrativeInformation
+
+  const unitGroupId = info.quantitativeReference.referenceToReferenceUnitGroup.refObjectId
+  const unitGroupDataset = unitGroupId ? unitGroupsById.get(unitGroupId) : undefined
+  const unitGroup = unitGroupDataset ? toUnitGroupDataSet(unitGroupDataset.payload) : undefined
+  const refUnitId = unitGroup?.unitGroupInformation.quantitativeReference.referenceToReferenceUnit
+  const referenceUnitName = unitGroup?.units.find((u) => u.dataSetInternalID === refUnitId)?.name
 
   return (
     <div className="flex flex-col gap-4">
@@ -64,10 +77,24 @@ export function FlowPropertyDetail() {
               <LangRow label="General comment" value={info.dataSetInformation.generalComment} />
               {info.quantitativeReference.referenceToReferenceUnitGroup.shortDescription && (
                 <div>
-                  <p className="text-sm font-medium">Reference to reference unit group</p>
+                  <p className="text-sm font-medium">Reference unit</p>
                   <p className="text-muted-foreground text-sm">
-                    {info.quantitativeReference.referenceToReferenceUnitGroup.shortDescription}
+                    {unitGroupDataset ? (
+                      <Link
+                        to={`/open-data/unit_group/${unitGroupDataset.id}`}
+                        className="text-primary hover:underline"
+                      >
+                        {info.quantitativeReference.referenceToReferenceUnitGroup.shortDescription}
+                      </Link>
+                    ) : (
+                      info.quantitativeReference.referenceToReferenceUnitGroup.shortDescription
+                    )}
                   </p>
+                  {referenceUnitName && (
+                    <p className="text-muted-foreground text-sm">
+                      Name of unit: {referenceUnitName}
+                    </p>
+                  )}
                 </div>
               )}
             </TabsContent>
