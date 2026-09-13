@@ -317,11 +317,18 @@ check tab names/counts for types not yet screenshotted.
   "Flow property information") and added the actual resolved reference-unit
   name (e.g. "Name of unit: L") next to the unit group link, matching
   TianGong's "Quantitative reference" block which ours omitted.
-- **Unit Group, Source, Contact, Model** 🔜 not screenshot-verified. Tab
-  names/counts already match TianGong's real locale strings (checked
-  directly against `tiangong-lca/platform` source, not guessed), so no known
-  gap — but unlike the three done above, this hasn't been confirmed against
-  an actual rendered screenshot, so treat as unverified rather than done.
+- **Unit Group** ✅ done, screenshot-verified. Real TianGong has a dedicated
+  4th **"Units"** tab (Index/Name/Comment/Mean value/Quantitative reference)
+  — ours had the units table folded into "Unit group information" with
+  different columns ("Unit"/"Conversion factor"). Split it out to match,
+  same pattern as Flow's "Flow property" tab.
+- **Source, Contact** ✅ verified against real screenshots, no changes
+  needed — both already matched TianGong's fields and 2-tab layout.
+- **Model** 🔜 not screenshot-verified. Tab names/count already match
+  TianGong's real locale strings (checked directly against
+  `tiangong-lca/platform` source, not guessed), so no known gap — but unlike
+  the five done above, this hasn't been confirmed against an actual rendered
+  screenshot, so treat as unverified rather than done.
 
 ---
 
@@ -333,15 +340,15 @@ check tab names/counts for types not yet screenshotted.
    Sources / Unit Groups ✅ done
 4. Phase 5 — EcoSpold v2 / TIDAS export tooling ✅ done
 5. Phase 6 — UI parity with the real TianGong platform 🚧 in progress —
-   Unit Group / Source / Contact / Model still need screenshot verification
+   Model still needs screenshot verification
 
 ## Outstanding items (not yet done, as of 2026-09-13)
 
 - `supabase/seed.sql` is stale — still the old 58-row hand-authored dataset,
   not the 77-row real-MCP-data set from Phase 4. Re-running it today would
   silently undo Phase 4's live data.
-- Phase 6: Unit Group, Source, Contact, Model detail pages haven't been
-  checked against real TianGong screenshots (only against its source code).
+- Phase 6: Model's detail page hasn't been checked against a real TianGong
+  screenshot (only against its source code) — the other 6 types now are.
 - The three ad hoc export artifacts committed under `scripts/`
   (`prepared-tidas.zip`, `ecospold_all_10_graphs.zip`, the two
   `tidas-*-report.json` files) are one-off generated output sitting in the
