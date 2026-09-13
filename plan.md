@@ -199,58 +199,152 @@ Three separate asks, in order:
    process and connection table, edit form) — `tsc`/`build`/`lint` clean.
    **Phase 3 is now fully done.**
 
-### Phase 4 — Import more real data via the lca-mcp MCP server 🔜 not started
+### Phase 4 — Import more real data via the lca-mcp MCP server ✅ done (2026-09-12)
 
 Recap of how the existing 18 lca-mcp processes were imported (prior session,
 not detailed in this plan file — per `WORKLOG.md` 2026-09-10 entry, "Add 18
 processes from lca-mcp product graphs to seed data"): pulled from the lca-mcp
 MCP server's bundled product graphs.
 
-This phase extends that same import to the **other types**, using the MCP
-tools available in this environment (`mcp__claude_ai_lca_new__*`):
-`list_product_graphs` (bundled YAML product-graph catalog — each graph is a
-named product system with its activities/exchanges), `search_database` /
-`query_lca_database` / `get_lca_database_schema` (the underlying Brightway-backed
-searchable SQLite projection: `activities`, `exchanges`, `exchange_details`
-tables), `get_lca_activity_inputs` (one activity's direct exchanges).
+Actually executed, ahead of the original heuristic sketch above: the user
+first had all 40 non-MCP-derived rows (the hand-authored 2026-09-08 mock
+dataset — models/flows/flow_properties/unit_groups/sources/contacts) deleted
+from the live Supabase table, keeping only the 18 real lca-mcp processes, then
+had the other 6 types rebuilt **entirely from `list_product_graphs`'s own 10
+bundled product graphs** rather than from Brightway/`query_lca_database`:
 
-What maps cleanly:
-- **Models** — each product graph *is* a Model almost directly: a named
-  product system referencing a list of processes, matching the existing
-  `model.payload.processes` convention (or the new ILCD model format, once
-  Phase 3 defines it).
-- **Flows** — every exchange endpoint in a product graph is a flow; importing
-  these as real Flow records is what actually resolves the ~31 currently
-  free-text/unlinked flow names left over from the Phase 1 migration (see
-  Phase 1's note above).
+- **Unit Groups (4)** — Units of mass (kg), volume (L), items (unit),
+  transport service (tkm): the literal units the 10 graphs use, not a guessed
+  mapping.
+- **Flow Properties (4)** — Mass, Volume, Item(s), Transport service, each
+  pointing at its unit group.
+- **Flows (31)** — every distinct emission/resource/intermediate
+  product/background input across all 10 graphs, tagged Elementary or
+  Product flow.
+- **Sources (10)** — one per product graph, citing `lca-mcp.mathplosion.com`
+  and its LCIA method (TRACI v2.1 / EF v3.1).
+- **Models (10)** — one Life Cycle Model per product graph (e.g. Jacket's
+  5-process P0→P1→P2→P4, P3→P4 chain), using each graph's own `goal` text.
+- Patched all 18 process rows' exchange/source `refObjectId`s (previously
+  `null`, matched only by free-text `shortDescription`) to point at the real
+  new records — this is what actually resolved the dangling refs flagged back
+  in Phase 1/2's notes.
+- **Contacts stayed empty** — the MCP data has no author/contact metadata,
+  matching the "needs a decision" flag above; the decision made was "skip".
 
-What needs a mapping heuristic, flagged explicitly rather than silently
-invented (Brightway/lca-mcp's data model doesn't have these as first-class
-concepts):
-- **Flow Properties / Unit Groups** — Brightway exchanges carry a single unit
-  string, not a property+unit-group breakdown. Plan: derive Unit Groups from
-  the distinct set of units actually seen across imported exchanges (e.g. all
-  mass-like units → one "Units of mass" group), and Flow Properties from a
-  small fixed mapping (kg/g/t → Mass, MJ/kWh → Net calorific value, etc.) —
-  same convention already used for the hand-authored 2026-09-08 mock rows.
-- **Sources** — no direct equivalent; plan is to derive one Source per
-  product graph from its LCIA method / database attribution (e.g. "TRACI
-  v2.1", "bafu-linked"), similar to how `source` was already populated as a
-  free-text field for the 18 existing lca-mcp processes.
-- **Contacts** — no equivalent at all in the MCP data. Likely out of scope for
-  this import, or a single generic "Imported via lca-mcp" contact — needs a
-  decision when this phase starts, not decided yet.
+`supabase/seed.sql` was **not** kept in sync with this — it still reflects the
+old 58-row hand-authored dataset and would restore it if re-run. Flagged to
+the user as outstanding, not yet resolved.
 
-This phase runs **after** Phase 2 and Phase 3, both because it depends on
-those types having their ILCD-lite schemas defined (so import writes directly
-into the final shape instead of needing a second migration), and because the
-user asked for it last.
+### Phase 5 — Export tooling: EcoSpold v2 / TIDAS pipeline ✅ done (2026-09-12)
+
+Off the original roadmap — user-requested mid-session after Phase 4, once real
+MCP-sourced data existed to export. Two new committed CLI utilities under
+`scripts/` (Python, stdlib + `tidas-tools` for the second one), both driven
+live off the Supabase `datasets` table via the anon key:
+
+- **`scripts/export_ecospold.py`** — converts a Model (product graph) into
+  schema-valid **EcoSpold v2** XML. Schema verified against the real
+  `EcoSpold02.xsd` (fetched from `brightway-lca/pyecospold`) with `lxml`;
+  process-to-process links use EcoSpold's `activityLinkId` attribute, verified
+  correct against the Jacket 5-process chain.
+- **`scripts/export_tidas.py`** — one-shot pipeline: `export_ecospold.py` →
+  `tidas-import` → `tidas-validate` → zip, producing a package ready to
+  upload to the real TianGong platform (`tiangong-lca/platform`). Iterated
+  through three real upload failures against the live platform (its Task
+  Center + downloaded import-report JSON were the only feedback loop
+  available — no API access), each traced to a specific root cause and fixed
+  in the tool itself, not worked around by hand each time:
+  1. **"package does not contain any supported TIDAS datasets"** — read
+     `tiangong-lca/worker`'s own Rust source
+     (`crates/solver-worker/src/package_execution.rs`) and found it requires
+     `<table>/<uuid>_<version>.json` filenames (rsplit on the last `_`);
+     plain `tidas-tools` output is `<uuid>.json` with no version suffix, so
+     every file was silently skipped. Fixed with a post-validation rename
+     pass reading each record's own `dataSetVersion`.
+  2. **`USER_DATA_CONFLICT`, 0 imported** — the platform rejects an entire
+     package if even one record conflicts with existing data; 2 of the 60
+     records (a generic unitgroup + flowproperty that `tidas-tools`' EcoSpold2
+     adapter always emits identically regardless of input) already existed
+     under the user's account. Fixed by excluding
+     contacts/sources/unitgroups/flowproperties from the package **by
+     default** (flows/processes still reference them by the same id, which
+     resolves against what the target already has); added
+     `--include-reference-data` to opt back in for a genuinely empty account.
+  3. Added `--repair-from-report <report.json>` as a general escape hatch —
+     strips whatever a downloaded TianGong import report flags under
+     `filtered_open_data`/`user_conflicts` and rewrites the zip, without
+     hand-hunting file names again if a conflict shows up in the future.
+  Confirmed working end to end: user uploaded a generated package and it
+  showed real imported data (Input/Output tab, correct amounts) on
+  `lca.tiangong.earth`.
+
+Also delivered ad hoc, not committed to the repo (correctly — they're
+generated output, not source): a `.zolca` (openLCA JSON-LD) export for one
+graph, built and validated the same way (real schema fetched from
+`GreenDelta/olca-schema`) before the user redirected to EcoSpold/TIDAS instead.
+
+### Phase 6 — Align this app's UI with the real TianGong platform 🚧 in progress (started 2026-09-12)
+
+Distinct from Phases 1-3 (which matched TianGong's *data schema*): this phase
+matches TianGong's actual rendered *UI* structure, tab-by-tab, verified
+against real `lca.tiangong.earth` screenshots the user provided (not just the
+schema research this repo already had). Also pulled TianGong's actual
+frontend source (`tiangong-lca/platform`'s `src/locales/en-US/pages_*.ts`) to
+check tab names/counts for types not yet screenshotted.
+
+- **Process** ✅ done, screenshot-verified. Added the missing **LCIA Results**
+  and **Validation** tabs (honest empty states — no calculation engine exists
+  here, matching the original Phase 1 scope decision to skip these rather
+  than fake them) so the tab count matches TianGong's 7, not our previous 5.
+  Split the Inputs/Outputs table into separate Input/Output tables with
+  TianGong's full column set (Flow type, Classification, Version, Reference
+  unit, Data derivation type/status, Quantitative reference, Review type),
+  resolving each exchange's flow → flow property → unit group chain live.
+  Side effect worth knowing: our page now honestly shows empty
+  Classification and the real `01.01.000` version, where TianGong's own copy
+  of the same data shows a fake ISIC classification and a reset `00.00.001`
+  version — both artifacts of the lossy EcoSpold2 round-trip in Phase 5, not
+  a bug in either app.
+  Verified with a headless-Chromium (Playwright, installed this session) smoke test.
+- **Flow** ✅ done, screenshot-verified. Real TianGong has a dedicated 4th
+  **"Flow property"** tab (Index/Flow property/Mean value/Reference
+  unit/Quantitative reference) separate from "Modelling and validation" —
+  ours had it folded into Modelling and validation with different columns.
+  Split it out; reference unit resolved live the same way as Process.
+- **Flow Property** ✅ done, screenshot-verified. Tab names already matched;
+  fixed one label typo ("Flow propert**ies** information" →
+  "Flow property information") and added the actual resolved reference-unit
+  name (e.g. "Name of unit: L") next to the unit group link, matching
+  TianGong's "Quantitative reference" block which ours omitted.
+- **Unit Group, Source, Contact, Model** 🔜 not screenshot-verified. Tab
+  names/counts already match TianGong's real locale strings (checked
+  directly against `tiangong-lca/platform` source, not guessed), so no known
+  gap — but unlike the three done above, this hasn't been confirmed against
+  an actual rendered screenshot, so treat as unverified rather than done.
 
 ---
 
-## Execution order (as requested 2026-09-11)
+## Execution order (as requested 2026-09-11, extended 2026-09-12)
 
 1. Phase 2 — Flow, Flow Property, Unit Group, Source, Contact ILCD formats ✅ done
 2. Phase 3 — Model external link button, Model Edit, Model's own ILCD format ✅ done
 3. Phase 4 — MCP-driven import extended to Models / Flows / Flow Properties /
-   Sources / Unit Groups 🔜 next
+   Sources / Unit Groups ✅ done
+4. Phase 5 — EcoSpold v2 / TIDAS export tooling ✅ done
+5. Phase 6 — UI parity with the real TianGong platform 🚧 in progress —
+   Unit Group / Source / Contact / Model still need screenshot verification
+
+## Outstanding items (not yet done, as of 2026-09-13)
+
+- `supabase/seed.sql` is stale — still the old 58-row hand-authored dataset,
+  not the 77-row real-MCP-data set from Phase 4. Re-running it today would
+  silently undo Phase 4's live data.
+- Phase 6: Unit Group, Source, Contact, Model detail pages haven't been
+  checked against real TianGong screenshots (only against its source code).
+- The three ad hoc export artifacts committed under `scripts/`
+  (`prepared-tidas.zip`, `ecospold_all_10_graphs.zip`, the two
+  `tidas-*-report.json` files) are one-off generated output sitting in the
+  repo, not regenerated by CI — fine as a snapshot, but will drift from the
+  live dataset over time. `scripts/export_ecospold.py` / `export_tidas.py`
+  are the source of truth; the committed zips are not.
