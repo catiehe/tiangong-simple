@@ -17,7 +17,7 @@ npm install
 npm run dev
 ```
 
-With no further setup, the app runs entirely on the bundled mock data in `src/mock/datasets.json` — sign-in and "Add" are disabled until Supabase is configured (below).
+Supabase must be configured (below) before the app will load any data — without it, dataset pages show a "Supabase is not configured" error.
 
 ### Connecting Supabase
 
@@ -28,7 +28,7 @@ With no further setup, the app runs entirely on the bundled mock data in `src/mo
    VITE_SUPABASE_URL=
    VITE_SUPABASE_ANON_KEY=
    ```
-4. Restart `npm run dev` — the app now reads/writes through Supabase instead of the mock data, and magic-link sign-in (sidebar footer) becomes usable.
+4. Restart `npm run dev` — the app now reads/writes through Supabase, and magic-link sign-in (sidebar footer) becomes usable.
 
 ### Deploying to GitHub Pages
 

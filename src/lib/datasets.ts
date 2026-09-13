@@ -1,5 +1,13 @@
-import mockDatasets from "@/mock/datasets.json"
 import { supabase } from "@/lib/supabase"
+
+function requireSupabase() {
+  if (!supabase) {
+    throw new Error(
+      "Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY."
+    )
+  }
+  return supabase
+}
 
 export type DatasetType =
   | "model"
@@ -40,31 +48,23 @@ export function getDatasetTypeInfo(type: string): DatasetTypeInfo | undefined {
 }
 
 export async function listDatasets(type: DatasetType): Promise<Dataset[]> {
-  if (supabase) {
-    const { data, error } = await supabase
-      .from("datasets")
-      .select("*")
-      .eq("type", type)
-      .order("created_at", { ascending: false })
-    if (error) throw error
-    return data as Dataset[]
-  }
-
-  return (mockDatasets as Dataset[]).filter((d) => d.type === type)
+  const { data, error } = await requireSupabase()
+    .from("datasets")
+    .select("*")
+    .eq("type", type)
+    .order("created_at", { ascending: false })
+  if (error) throw error
+  return data as Dataset[]
 }
 
 export async function getDataset(id: string): Promise<Dataset | undefined> {
-  if (supabase) {
-    const { data, error } = await supabase
-      .from("datasets")
-      .select("*")
-      .eq("id", id)
-      .maybeSingle()
-    if (error) throw error
-    return data ?? undefined
-  }
-
-  return (mockDatasets as Dataset[]).find((d) => d.id === id)
+  const { data, error } = await requireSupabase()
+    .from("datasets")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle()
+  if (error) throw error
+  return data ?? undefined
 }
 
 export interface NewDataset {
