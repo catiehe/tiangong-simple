@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import { Star } from "lucide-react"
+import { CircleCheck, CircleX } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -49,6 +49,7 @@ export function UnitGroupDetail() {
               <TabsTrigger value="info">Unit group information</TabsTrigger>
               <TabsTrigger value="model">Modelling and validation</TabsTrigger>
               <TabsTrigger value="admin">Administrative information</TabsTrigger>
+              <TabsTrigger value="units">Units</TabsTrigger>
             </TabsList>
 
             <TabsContent value="info" className="flex flex-col gap-4 pt-4">
@@ -63,35 +64,6 @@ export function UnitGroupDetail() {
                 </div>
               )}
               <LangRow label="General comment" value={info.dataSetInformation.generalComment} />
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead />
-                    <TableHead>Unit</TableHead>
-                    <TableHead>Conversion factor</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {ds.units.map((u) => (
-                    <TableRow key={u.dataSetInternalID}>
-                      <TableCell>
-                        {info.quantitativeReference.referenceToReferenceUnit === u.dataSetInternalID && (
-                          <Star className="fill-primary text-primary size-4" />
-                        )}
-                      </TableCell>
-                      <TableCell>{u.name}</TableCell>
-                      <TableCell>{u.meanValue ?? ""}</TableCell>
-                    </TableRow>
-                  ))}
-                  {ds.units.length === 0 && (
-                    <TableRow>
-                      <TableCell colSpan={3} className="text-muted-foreground">
-                        No units yet.
-                      </TableCell>
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
             </TabsContent>
 
             <TabsContent value="model" className="pt-4">
@@ -122,6 +94,52 @@ export function UnitGroupDetail() {
                 <p className="text-sm font-medium">Data set version</p>
                 <p className="text-muted-foreground text-sm">{admin.dataSetVersion}</p>
               </div>
+            </TabsContent>
+
+            <TabsContent value="units" className="pt-4">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Index</TableHead>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Comment</TableHead>
+                    <TableHead>Mean value (of unit)</TableHead>
+                    <TableHead>Quantitative reference</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {ds.units.map((u) => {
+                    const isReference =
+                      info.quantitativeReference.referenceToReferenceUnit === u.dataSetInternalID
+                    return (
+                      <TableRow key={u.dataSetInternalID}>
+                        <TableCell>{u.dataSetInternalID}</TableCell>
+                        <TableCell>{u.name}</TableCell>
+                        <TableCell>
+                          {u.generalComment.length > 0
+                            ? u.generalComment.map((c) => c.text).join(" / ")
+                            : "-"}
+                        </TableCell>
+                        <TableCell>{u.meanValue ?? ""}</TableCell>
+                        <TableCell>
+                          {isReference ? (
+                            <CircleCheck className="size-4 text-primary" />
+                          ) : (
+                            <CircleX className="text-muted-foreground size-4" />
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    )
+                  })}
+                  {ds.units.length === 0 && (
+                    <TableRow>
+                      <TableCell colSpan={5} className="text-muted-foreground">
+                        No units yet.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
             </TabsContent>
           </Tabs>
         </CardContent>
